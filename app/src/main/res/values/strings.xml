@@ -55,6 +55,7 @@
 
 
     <!-- fragment_add_imagen -->
+    <string name="description_iv_Upload_AddImagen">Uploaded Image by User</string>
     <string name="tv_AddNewImagen_AddImagen">Agregar nueva imagen</string>
     <string name="bt_Cancel_AddImagen">Cancelar</string>
     <string name="bt_Add_AddImagen">Agregar</string>

@@ -36,11 +36,11 @@
 
     <TextView
         android:id="@+id/tv_AddNewFlora_AddFlora"
+        style="@style/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/tv_AddNewFlora_AddFlora"
-        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
