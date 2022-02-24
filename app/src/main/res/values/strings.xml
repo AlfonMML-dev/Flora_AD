@@ -9,4 +9,56 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- fragment_first -->
+    <string name="description_extended_fab_Add">Extend FAB which show two FABs</string>
+    <string name="description_fab_AddFlora">FAB which go to xml fragment_add_flora</string>
+    <string name="description_fab_AddImage">FAB which go to xml fragment_add_imagen</string>
+    <string name="tx_extend_fab_Add">Add</string>
+    <string name="tv_AddImage">Add Image</string>
+    <string name="tv_AddFlora">Add Flora</string>
+
+    <!-- item_flora -->
+    <string name="description_iv_ImageMain_ItemFlora">Main Image of Flora element</string>
+    <string name="tv_IDFlora_ItemFlora">ID Flora 45819</string>
+    <string name="tv_Name_ItemFlora">Nombre</string>
+    <string name="tv_NameValue_ItemFlora">Celtis Australis</string>
+    <string name="tv_Family_ItemFlora">Familia</string>
+    <string name="tv_FamilyValue_ItemFlora">Cannabaceae</string>
+
+    <!-- fragment_add_flora -->
+    <string name="tv_AddNewFlora_AddFlora">Agregar nueva flora</string>
+    <string name="bt_Cancel_AddFlora">Cancelar</string>
+    <string name="bt_Add_AddFlora">Agregar</string>
+    <string name="hint_Nombre_AddFlora">Nombre</string>
+    <string name="hint_Familia_AddFlora">Familia</string>
+    <string name="hint_Identificacion_AddFlora">ID</string>
+    <string name="hint_Altitud_AddFlora">Altitud</string>
+    <string name="hint_Habitat_AddFlora">Habitat</string>
+    <string name="hint_Fitosociologia_AddFlora">Fitosociologia</string>
+    <string name="hint_Biotipo_AddFlora">Biotipo</string>
+    <string name="hint_BiologiaReproductiva_AddFlora">BiologiaReproductiva</string>
+    <string name="hint_Floracion_AddFlora">Floracion</string>
+    <string name="hint_Fructificacion_AddFlora">Fructificacion</string>
+    <string name="hint_ExpresionSexual_AddFlora">Expresion Sexual</string>
+    <string name="hint_Polinizacion_AddFlora">Polinizacion</string>
+    <string name="hint_Dispersion_AddFlora">Dispersion</string>
+    <string name="hint_NumCromosomatico_AddFlora">Número Cromosomático</string>
+    <string name="hint_ReproduccionAsexual_AddFlora">Reproduccion Asexual</string>
+    <string name="hint_Distribucion_AddFlora">Distribución</string>
+    <string name="hint_Biologia_AddFlora">Biología</string>
+    <string name="hint_Demografia_AddFlora">Demografía</string>
+    <string name="hint_Amenazas_AddFlora">Amenazas</string>
+    <string name="hint_MedidasPropuestas_AddFlora">Medidas Propuestas</string>
+
+
+    <!-- fragment_add_imagen -->
+    <string name="tv_AddNewImagen_AddImagen">Agregar nueva imagen</string>
+    <string name="bt_Cancel_AddImagen">Cancelar</string>
+    <string name="bt_Add_AddImagen">Agregar</string>
+    <string name="hint_Nombre_AddImagen">Nombre</string>
+    <string name="hint_Familia_AddImagen">Familia</string>
+    <string name="hint_Identificacion_AddImagen">ID de la Flora que pertenece</string>
 </resources>

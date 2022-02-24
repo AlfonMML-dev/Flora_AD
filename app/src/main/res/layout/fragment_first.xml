@@ -4,25 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".view.FirstFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_HTop_First"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_HBottom_First"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_VStart_First"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_VEnd_First"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_Flora"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_First"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First"
+        app:layout_constraintStart_toEndOf="@+id/guideline_VStart_First"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_First" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab_Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/description_extended_fab_Add"
+        android:text="@string/tx_extend_fab_Add"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_First"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_AddFlora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/description_fab_AddFlora"
+        android:src="@drawable/ic_baseline_post_add_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/extended_fab_Add"
+        app:layout_constraintEnd_toEndOf="@+id/extended_fab_Add" />
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/tv_AddFlora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="8dp"
+        android:text="@string/tv_AddFlora"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_AddFlora"
+        app:layout_constraintEnd_toStartOf="@+id/fab_AddFlora"
+        app:layout_constraintTop_toTopOf="@+id/fab_AddFlora" />
 
-    <Button
-        android:id="@+id/button_first"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_AddImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/description_fab_AddImage"
+        android:src="@drawable/ic_baseline_add_photo_alternate_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fab_AddFlora"
+        app:layout_constraintEnd_toEndOf="@+id/extended_fab_Add" />
+
+    <TextView
+        android:id="@+id/tv_AddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/tv_AddImage"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_AddImage"
+        app:layout_constraintEnd_toStartOf="@+id/fab_AddImage"
+        app:layout_constraintTop_toTopOf="@+id/fab_AddImage" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
