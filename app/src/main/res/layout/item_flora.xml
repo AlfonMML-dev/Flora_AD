@@ -24,48 +24,34 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_H_iv_ImageMain_ItemFlora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.75" />
-
-            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_VMiddle_ItemFlora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.4" />
+                app:layout_constraintGuide_percent="0.45" />
 
             <ImageView
                 android:id="@+id/iv_ImageMain_ItemFlora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
                 android:contentDescription="@string/description_iv_ImageMain_ItemFlora"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_H_iv_ImageMain_ItemFlora"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_VMiddle_ItemFlora"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/tv_IDFlora_ItemFlora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/tv_IDFlora_ItemFlora"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_H_iv_ImageMain_ItemFlora" />
-
-            <TextView
                 android:id="@+id/tv_Name_ItemFlora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/tv_Name_ItemFlora"
                 app:layout_constraintBottom_toTopOf="@+id/tv_NameValue_ItemFlora"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +62,8 @@
                 android:id="@+id/tv_NameValue_ItemFlora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/tv_NameValue_ItemFlora"
                 app:layout_constraintBottom_toTopOf="@+id/tv_Family_ItemFlora"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +74,8 @@
                 android:id="@+id/tv_Family_ItemFlora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/tv_Family_ItemFlora"
                 app:layout_constraintBottom_toTopOf="@+id/tv_FamilyValue_ItemFlora"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,9 +86,11 @@
                 android:id="@+id/tv_FamilyValue_ItemFlora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/tv_FamilyValue_ItemFlora"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_H_iv_ImageMain_ItemFlora"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline_VMiddle_ItemFlora"
                 app:layout_constraintTop_toBottomOf="@+id/tv_Family_ItemFlora" />

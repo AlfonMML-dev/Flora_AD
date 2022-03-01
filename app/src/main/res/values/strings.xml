@@ -2,8 +2,11 @@
     <string name="app_name">Flora_AD</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Flora</string>
+    <string name="flora_detail_fragment_label">Detalles de la flora</string>
+    <string name="edit_flora_fragment_label">Editar flora</string>
+    <string name="add_flora_fragment_label">Agregar nueva flora</string>
+    <string name="add_image_fragment_label">Agregar imagen</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -28,10 +31,15 @@
     <string name="tv_Family_ItemFlora">Familia</string>
     <string name="tv_FamilyValue_ItemFlora">Cannabaceae</string>
 
+    <!-- fragment_second -->
+    <string name="tv_EditFlora">Editar flora</string>
+    <string name="bt_Save">Guardar</string>
+    <string name="bt_Edit_Second">Editar</string>
+
     <!-- fragment_add_flora -->
     <string name="tv_AddNewFlora_AddFlora">Agregar nueva flora</string>
-    <string name="bt_Cancel_AddFlora">Cancelar</string>
-    <string name="bt_Add_AddFlora">Agregar</string>
+    <string name="bt_Cancel">Cancelar</string>
+    <string name="bt_Add">Agregar</string>
     <string name="hint_Nombre_AddFlora">Nombre</string>
     <string name="hint_Familia_AddFlora">Familia</string>
     <string name="hint_Identificacion_AddFlora">ID</string>

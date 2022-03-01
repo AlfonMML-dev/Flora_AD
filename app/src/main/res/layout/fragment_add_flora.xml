@@ -34,20 +34,8 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <TextView
-        android:id="@+id/tv_AddNewFlora_AddFlora"
-        style="@style/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/tv_AddNewFlora_AddFlora"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView_AddFlora"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
-        app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora" />
-
     <ScrollView
-        android:id="@+id/scrollView_AddFlora"
+        android:id="@+id/scrollView_Second"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
@@ -57,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bt_Add_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/tv_AddNewFlora_AddFlora">
+        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,27 +87,6 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Familia_AddFlora"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_ID_AddFlora"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="@string/hint_Identificacion_AddFlora"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_ID_AddFlora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -487,18 +454,19 @@
         </LinearLayout>
     </ScrollView>
 
+
     <Button
         android:id="@+id/bt_Cancel_AddFlora"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/bt_Cancel_AddFlora"
+        android:text="@string/bt_Cancel"
         app:icon="@drawable/ic_baseline_cancel_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/bt_Add_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView_AddFlora" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_Second" />
 
     <Button
         android:id="@+id/bt_Add_AddFlora"
@@ -506,7 +474,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/bt_Add_AddFlora"
+        android:text="@string/bt_Add"
         app:icon="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="@+id/bt_Cancel_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"

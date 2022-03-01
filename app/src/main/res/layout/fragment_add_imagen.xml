@@ -92,10 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:hint="@string/hint_Nombre_AddImagen"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
+                app:errorEnabled="true" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Nombre_AddImagen"
@@ -113,34 +110,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:hint="@string/hint_Familia_AddImagen"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
+                app:errorEnabled="true" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Familia_AddImagen"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_ID_AddImagen"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:hint="@string/hint_Identificacion_AddImagen"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_ID_AddImagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"

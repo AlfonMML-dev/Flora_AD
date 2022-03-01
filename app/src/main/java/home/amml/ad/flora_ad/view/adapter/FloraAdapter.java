@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import home.amml.ad.flora_ad.R;
@@ -23,8 +25,8 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     private Context context;
 
     private MainActivityViewModel mavm;
-    private List<Flora> floraList;
-    private List<Imagen> imagenList;
+    private ArrayList<Flora> floraList;
+    private ArrayList<Imagen> imagenList;
 
     private View.OnClickListener listener;
 
@@ -51,7 +53,7 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
         //Emplear Glide
         //Glide.with(context).load(imagen.getImagenPrincipal()).into(holder.iV_Car_Item_Car);
         // holder.ivFlora.setImageResource(Integer.parseInt(imagen.getNombre()));
-        holder.tv_IDFlora_ItemFlora.setText("ID Flora" + flora.getId());
+//        holder.tv_IDFlora_ItemFlora.setText("ID Flora" + flora.getId());
         holder.tv_NameValue_ItemFlora.setText(flora.getNombre());
         holder.tv_FamilyValue_ItemFlora.setText(flora.getFamilia());
     }
@@ -64,7 +66,7 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
         return floraList.size();
     }
 
-    public void setFloraList(List<Flora> floraList) {
+    public void setFloraList(ArrayList<Flora> floraList) {
         this.floraList = floraList;
         notifyDataSetChanged();
     }

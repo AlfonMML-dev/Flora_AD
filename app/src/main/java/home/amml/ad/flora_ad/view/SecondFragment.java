@@ -30,13 +30,56 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        initialize();
+    }
+
+    private void initialize(){
+        initializeButtons();
+        initializeFAB();
+    }
+
+    private void initializeButtons(){
+        binding.btCancelSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
+
+        binding.btEditSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.btEditSecond.setVisibility(View.GONE);
+                binding.btEditSecond.setEnabled(false);
+                binding.btSaveSecond.setVisibility(View.VISIBLE);
+                binding.btSaveSecond.setEnabled(true);
+            }
+        });
+
+        binding.btSaveSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveAction();
+            }
+        });
+    }
+
+    private void initializeFAB(){
+        binding.fabAddImageSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(SecondFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_addImagenFragment);
+            }
+        });
+    }
+
+    private void saveAction(){
+        //Hay que subir la flora a la base de datos con la API
+
+        NavHostFragment.findNavController(SecondFragment.this)
+                .navigate(R.id.action_SecondFragment_to_FirstFragment);
     }
 
     @Override

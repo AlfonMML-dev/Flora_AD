@@ -17,36 +17,39 @@
         <action
             android:id="@+id/action_FirstFragment_to_addFloraFragment"
             app:destination="@id/addFloraFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_addImagenFragment"
-            app:destination="@id/addImagenFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="home.amml.ad.flora_ad.view.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/flora_detail_fragment_label"
         tools:layout="@layout/fragment_second">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_addImagenFragment"
+            app:destination="@id/addImagenFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFloraFragment"
         android:name="home.amml.ad.flora_ad.view.AddFloraFragment"
-        android:label="fragment_add_flora"
-        tools:layout="@layout/fragment_add_flora" >
+        android:label="@string/add_flora_fragment_label"
+        tools:layout="@layout/fragment_add_flora">
         <action
             android:id="@+id/action_addFloraFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_addFloraFragment_to_addImagenFragment"
+            app:destination="@id/addImagenFragment" />
     </fragment>
     <fragment
         android:id="@+id/addImagenFragment"
         android:name="home.amml.ad.flora_ad.view.AddImagenFragment"
-        android:label="fragment_add_imagen"
-        tools:layout="@layout/fragment_add_imagen" >
+        android:label="@string/add_image_fragment_label"
+        tools:layout="@layout/fragment_add_imagen">
         <action
-            android:id="@+id/action_addImagenFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_addImagenFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
 </navigation>

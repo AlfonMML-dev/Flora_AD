@@ -43,62 +43,18 @@
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_First"
         app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_First" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab_Add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_extended_fab_Add"
-        android:text="@string/tx_extend_fab_Add"
-        android:textSize="16sp"
-        app:icon="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_First"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_AddFlora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:contentDescription="@string/description_fab_AddFlora"
         android:src="@drawable/ic_baseline_post_add_24"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/extended_fab_Add"
-        app:layout_constraintEnd_toEndOf="@+id/extended_fab_Add" />
-
-    <TextView
-        android:id="@+id/tv_AddFlora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/tv_AddFlora"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_AddFlora"
-        app:layout_constraintEnd_toStartOf="@+id/fab_AddFlora"
-        app:layout_constraintTop_toTopOf="@+id/fab_AddFlora" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_AddImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="@string/description_fab_AddImage"
-        android:src="@drawable/ic_baseline_add_photo_alternate_24"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fab_AddFlora"
-        app:layout_constraintEnd_toEndOf="@+id/extended_fab_Add" />
-
-    <TextView
-        android:id="@+id/tv_AddImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/tv_AddImage"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_AddImage"
-        app:layout_constraintEnd_toStartOf="@+id/fab_AddImage"
-        app:layout_constraintTop_toTopOf="@+id/fab_AddImage" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_First"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

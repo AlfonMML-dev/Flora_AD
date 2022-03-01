@@ -30,7 +30,35 @@ public class AddFloraFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initialize();
+    }
 
+    private void addNewFlora(){
+        //Subimos la flora a la base de datos usando la api
+
+        NavHostFragment.findNavController(AddFloraFragment.this)
+                .navigate(R.id.action_addFloraFragment_to_FirstFragment);
+    }
+
+    private void initialize(){
+        initializeButtons();
+    }
+
+    private void initializeButtons(){
+        binding.btCancelAddFlora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(AddFloraFragment.this)
+                        .navigate(R.id.action_addFloraFragment_to_FirstFragment);
+            }
+        });
+
+        binding.btAddAddFlora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNewFlora();
+            }
+        });
     }
 
     @Override
