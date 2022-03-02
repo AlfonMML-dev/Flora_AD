@@ -28,7 +28,7 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     private ArrayList<Flora> floraList;
     private ArrayList<Imagen> imagenList;
 
-    private View.OnClickListener listener;
+    final String URL_IMG = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFapp/public/api/imagen/";
 
     public FloraAdapter(Context context) {
         this.context = context;
@@ -44,11 +44,8 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
 
-        //mavm = new ViewModelProvider(context).get(MainActivityViewModel.class);
-        floraList = mavm.getFloraLiveData().getValue();
-
         Flora flora = floraList.get(position);
-        Imagen imagen = imagenList.get(position);
+//        Imagen imagen = imagenList.get(position);
 
         //Emplear Glide
         //Glide.with(context).load(imagen.getImagenPrincipal()).into(holder.iV_Car_Item_Car);

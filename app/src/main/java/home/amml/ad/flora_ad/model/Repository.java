@@ -81,12 +81,12 @@ public class Repository {
             @Override
             public void onResponse(Call<Flora> call, Response<Flora> response) {
                 floraLiveDataId.setValue(response.body());
-                Log.v("xyzyx", response.body().toString());
+                Log.v("xyzxyz", response.body().toString());
             }
 
             @Override
             public void onFailure(Call<Flora> call, Throwable t) {
-                Log.v("xyzyx", t.getLocalizedMessage());
+                Log.v("xyzxyz", t.getLocalizedMessage());
             }
         });
     }
@@ -97,12 +97,12 @@ public class Repository {
             @Override
             public void onResponse(Call<ArrayList<Flora>> call, Response<ArrayList<Flora>> response) {
                 floraLiveData.setValue(response.body());
-                Log.v("xyzyx", response.body().toString());
+                Log.v("Repository_OnResponse", response.body().toString());
             }
 
             @Override
             public void onFailure(Call<ArrayList<Flora>> call, Throwable t) {
-                Log.v("xyzyx", t.getLocalizedMessage());
+                Log.v("Repository_OnFailure", t.getLocalizedMessage());
             }
         });
     }

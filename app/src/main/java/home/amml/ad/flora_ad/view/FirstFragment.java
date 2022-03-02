@@ -1,6 +1,7 @@
 package home.amml.ad.flora_ad.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -17,10 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentFirstBinding;
 import home.amml.ad.flora_ad.view.adapter.FloraAdapter;
+import home.amml.ad.flora_ad.viewmodel.MainActivityViewModel;
 
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
+
+    private MainActivityViewModel mavm;
+    private FloraAdapter floraAdapter;
 
     @Override
     public View onCreateView(
@@ -58,9 +64,16 @@ public class FirstFragment extends Fragment {
      */
     private void initializeRecycler() {
         binding.rvFlora.setLayoutManager(new LinearLayoutManager(getContext()));
-        FloraAdapter floraAdapter = new FloraAdapter(getContext());
+        floraAdapter = new FloraAdapter(getContext());
         binding.rvFlora.setAdapter(floraAdapter);
-        //floraAdapter.setFloraList(listCars);
+
+        mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mavm.getFlora();
+        mavm.getFloraLiveData().observe(this, floraPlural -> {
+            Log.v("FirstFragment", floraPlural.toString());
+            floraAdapter.setFloraList(floraPlural);
+        });
+
     }
 
     @Override

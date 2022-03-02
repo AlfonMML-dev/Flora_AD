@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddImagen"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddImagen"
         app:layout_constraintTop_toBottomOf="@+id/tv_AddNewImagen_AddImagen"
-        tools:src="@drawable/upload_svgrepo_com" />
+        tools:src="@drawable/ic_baseline_cloud_upload_24" />
 
     <ScrollView
         android:id="@+id/scrollView_AddImagen"
@@ -104,22 +104,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_Familia_AddImagen"
+                android:id="@+id/ti_Descripcion_AddImagen"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:hint="@string/hint_Familia_AddImagen"
-                app:errorEnabled="true" >
+                android:hint="@string/hint_Descripcion_AddImagen"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_Familia_AddImagen"
+                    android:id="@+id/et_Descripcion_AddImagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
     </ScrollView>
 

@@ -14,6 +14,13 @@
         app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_H_iv_Upload_AddFlora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_HBottom_AddFlora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,8 +41,38 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
+    <ImageView
+        android:id="@+id/iv_Upload_AddFlora"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_H_iv_Upload_AddFlora"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
+        app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora"
+        tools:src="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_H_iv_Upload_AddFlora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="iv_Upload_AddFlora" />
+
+    <Button
+        android:id="@+id/bt_AddImage_AddFlora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/bt_AddImage_AddFlora"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView_AddFlora"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
+        app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
+        app:layout_constraintTop_toBottomOf="@id/barrier_H_iv_Upload_AddFlora" />
+
     <ScrollView
-        android:id="@+id/scrollView_Second"
+        android:id="@+id/scrollView_AddFlora"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
@@ -45,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bt_Add_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora">
+        app:layout_constraintTop_toBottomOf="@+id/bt_AddImage_AddFlora">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +94,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Nombre_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +115,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Familia_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +136,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Altitud_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +157,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Habitat_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +178,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Fitosociologia_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +199,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Biotipo_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +220,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_BiologiaReproductiva_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -204,7 +241,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Floracion_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +249,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_Floración_AddFlora"
+                    android:id="@+id/et_Floracion_AddFlora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -225,7 +262,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Fructificacion_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -246,7 +283,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_ExpresionSexual_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -267,7 +304,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Polinizacion_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -288,7 +325,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Dispersion_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -309,7 +346,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_NumCromosomatico_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -330,7 +367,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_ReproduccionAsexual_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -351,7 +388,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Distribucion_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -372,7 +409,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Biologia_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -393,7 +430,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Demografia_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -414,7 +451,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_Amenazas_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -435,7 +472,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/hint_MedidasPropuestas_AddFlora"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -454,7 +491,6 @@
         </LinearLayout>
     </ScrollView>
 
-
     <Button
         android:id="@+id/bt_Cancel_AddFlora"
         android:layout_width="0dp"
@@ -466,7 +502,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/bt_Add_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView_Second" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_AddFlora" />
 
     <Button
         android:id="@+id/bt_Add_AddFlora"

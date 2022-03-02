@@ -35,9 +35,12 @@
     <string name="tv_EditFlora">Editar flora</string>
     <string name="bt_Save">Guardar</string>
     <string name="bt_Edit_Second">Editar</string>
+    <!-- menu_edit -->
+    <string name="item_Delete_MenuEdit">Borrar</string>
 
     <!-- fragment_add_flora -->
     <string name="tv_AddNewFlora_AddFlora">Agregar nueva flora</string>
+    <string name="bt_AddImage_AddFlora">Agregar Imagen</string>
     <string name="bt_Cancel">Cancelar</string>
     <string name="bt_Add">Agregar</string>
     <string name="hint_Nombre_AddFlora">Nombre</string>
@@ -68,6 +71,6 @@
     <string name="bt_Cancel_AddImagen">Cancelar</string>
     <string name="bt_Add_AddImagen">Agregar</string>
     <string name="hint_Nombre_AddImagen">Nombre</string>
-    <string name="hint_Familia_AddImagen">Familia</string>
-    <string name="hint_Identificacion_AddImagen">ID de la Flora que pertenece</string>
+    <string name="hint_Descripcion_AddImagen">Descripción</string>
+    <string name="hint_URL_AddImagen">URL de la foto</string>
 </resources>

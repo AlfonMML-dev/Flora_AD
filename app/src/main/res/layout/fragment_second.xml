@@ -94,7 +94,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_Add_AddFlora"
+        app:layout_constraintBottom_toTopOf="@+id/bt_Save_Second"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_Second"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_Second"
         app:layout_constraintTop_toBottomOf="@+id/fab_AddImage_Second">
@@ -507,7 +507,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/bt_Cancel_AddFlora"
+        android:id="@+id/bt_Cancel_Second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -520,7 +520,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline_H_Buttons_Second" />
 
     <Button
-        android:id="@+id/bt_Add_AddFlora"
+        android:id="@+id/bt_Save_Second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -529,10 +529,10 @@
         android:text="@string/bt_Save"
         android:visibility="gone"
         app:icon="@drawable/ic_baseline_save_24"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_Cancel_AddFlora"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_Cancel_Second"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_Second"
         app:layout_constraintStart_toEndOf="@+id/guideline_VMiddle_Second"
-        app:layout_constraintTop_toTopOf="@+id/bt_Cancel_AddFlora" />
+        app:layout_constraintTop_toTopOf="@+id/bt_Cancel_Second" />
 
     <Button
         android:id="@+id/bt_Edit_Second"
@@ -542,9 +542,9 @@
         android:layout_marginEnd="8dp"
         android:text="@string/bt_Edit_Second"
         app:icon="@drawable/ic_baseline_mode_edit_24"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_Cancel_AddFlora"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_Cancel_Second"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_Second"
         app:layout_constraintStart_toEndOf="@+id/guideline_VMiddle_Second"
-        app:layout_constraintTop_toTopOf="@+id/bt_Cancel_AddFlora" />
+        app:layout_constraintTop_toTopOf="@+id/bt_Cancel_Second" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,11 @@
 package home.amml.ad.flora_ad.model.entity;
 
-public class Flora {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+
+public class Flora implements Parcelable {
 
     private long id;
     private String nombre, familia, identificacion, altitud, habitat,
@@ -12,7 +17,12 @@ public class Flora {
     public Flora() {
     }
 
-    public Flora(long id, String nombre, String familia, String identificacion, String altitud, String habitat, String fitosociologia, String biotipo, String biologia_reproductiva, String floracion, String fructificacion, String expresion_sexual, String polinizacion, String dispersion, String numero_cromosomatico, String reproduccion_asexual, String distribucion, String biologia, String demografia, String amenazas, String medidas_propuestas) {
+    public Flora(long id, String nombre, String familia, String identificacion, String altitud,
+                 String habitat, String fitosociologia, String biotipo,
+                 String biologia_reproductiva, String floracion, String fructificacion,
+                 String expresion_sexual, String polinizacion, String dispersion,
+                 String numero_cromosomatico, String reproduccion_asexual, String distribucion,
+                 String biologia, String demografia, String amenazas, String medidas_propuestas) {
         this.id = id;
         this.nombre = nombre;
         this.familia = familia;
@@ -34,6 +44,70 @@ public class Flora {
         this.demografia = demografia;
         this.amenazas = amenazas;
         this.medidas_propuestas = medidas_propuestas;
+    }
+
+    protected Flora(Parcel in) {
+        id = in.readLong();
+        nombre = in.readString();
+        familia = in.readString();
+        identificacion = in.readString();
+        altitud = in.readString();
+        habitat = in.readString();
+        fitosociologia = in.readString();
+        biotipo = in.readString();
+        biologia_reproductiva = in.readString();
+        floracion = in.readString();
+        fructificacion = in.readString();
+        expresion_sexual = in.readString();
+        polinizacion = in.readString();
+        dispersion = in.readString();
+        numero_cromosomatico = in.readString();
+        reproduccion_asexual = in.readString();
+        distribucion = in.readString();
+        biologia = in.readString();
+        demografia = in.readString();
+        amenazas = in.readString();
+        medidas_propuestas = in.readString();
+    }
+
+    public static final Creator<Flora> CREATOR = new Creator<Flora>() {
+        @Override
+        public Flora createFromParcel(Parcel in) {
+            return new Flora(in);
+        }
+
+        @Override
+        public Flora[] newArray(int size) {
+            return new Flora[size];
+        }
+    };
+
+    public void setAtributtes(ArrayList<String> editTextsValues){
+        setNombre(editTextsValues.get(0));
+        setFamilia(editTextsValues.get(1));
+        setAltitud(editTextsValues.get(2));
+
+        setHabitat(editTextsValues.get(3));
+        setFitosociologia(editTextsValues.get(4));
+        setBiotipo(editTextsValues.get(5));
+
+        setBiologia_reproductiva(editTextsValues.get(6));
+        setFloracion(editTextsValues.get(7));
+        setFructificacion(editTextsValues.get(8));
+
+        setExpresion_sexual(editTextsValues.get(9));
+        setPolinizacion(editTextsValues.get(10));
+        setDispersion(editTextsValues.get(11));
+
+        setNumero_cromosomatico(editTextsValues.get(12));
+        setReproduccion_asexual(editTextsValues.get(13));
+        setDistribucion(editTextsValues.get(14));
+
+        setBiologia(editTextsValues.get(15));
+        setDemografia(editTextsValues.get(16));
+        setAmenazas(editTextsValues.get(17));
+
+        setMedidas_propuestas(editTextsValues.get(18));
     }
 
     public long getId() {
@@ -229,5 +303,35 @@ public class Flora {
                 ", amenazas='" + amenazas + '\'' +
                 ", medidas_propuestas='" + medidas_propuestas + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(nombre);
+        dest.writeString(familia);
+        dest.writeString(identificacion);
+        dest.writeString(altitud);
+        dest.writeString(habitat);
+        dest.writeString(fitosociologia);
+        dest.writeString(biotipo);
+        dest.writeString(biologia_reproductiva);
+        dest.writeString(floracion);
+        dest.writeString(fructificacion);
+        dest.writeString(expresion_sexual);
+        dest.writeString(polinizacion);
+        dest.writeString(dispersion);
+        dest.writeString(numero_cromosomatico);
+        dest.writeString(reproduccion_asexual);
+        dest.writeString(distribucion);
+        dest.writeString(biologia);
+        dest.writeString(demografia);
+        dest.writeString(amenazas);
+        dest.writeString(medidas_propuestas);
     }
 }

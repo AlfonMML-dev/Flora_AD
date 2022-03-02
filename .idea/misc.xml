@@ -3,15 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/drawable/upload_svgrepo_com.xml" value="0.3828125" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/content_main.xml" value="0.3188405797101449" />
-        <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/fragment_add_flora.xml" value="0.21105072463768115" />
+        <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/fragment_add_flora.xml" value="0.21739130434782608" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/fragment_add_imagen.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/fragment_second.xml" value="0.21739130434782608" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/item_flora.xml" value="0.33016304347826086" />
         <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/layout/slider_item.xml" value="0.3188405797101449" />
+        <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/menu/menu_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Alfonso/Desktop/CicloFPDAM_21-22/AD/Tema4_Eloquent/Flora_AMML/Flora_AD/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
