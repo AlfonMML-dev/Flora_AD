@@ -1,6 +1,5 @@
 package home.amml.ad.flora_ad.view;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentAddFloraBinding;
@@ -70,7 +68,6 @@ public class AddFloraFragment extends Fragment {
         //Creamos un objeto Flora en el que guardar los datos
         Flora flora = new Flora();
         flora.setAtributtes(getEditTextsValues());
-
         //Subimos la flora a la base de datos usando la api
         afvm.createFlora(flora);
     }
@@ -84,19 +81,7 @@ public class AddFloraFragment extends Fragment {
         aivm.saveImagenWithoutIntent(dataImage.uri, imagen);
     }
 
-    void dataObserver(){
-        afvm.getAddFloraLiveData().observeForever(idFlora ->{
-            if(idFlora > 0){
-                if(dataImage != null){
-                    addNewImage(idFlora);
-                }
-                Toast.makeText(getContext(), "Flora creada", Toast.LENGTH_SHORT).show();
-            }
-            navigateToFirstFragment();
-        });
-    }
-
-    private void datosBundle(){
+    private void dataBundle(){
         if (getArguments() == null || getArguments().isEmpty()){
             bundle = new Bundle();
         } else{
@@ -110,6 +95,22 @@ public class AddFloraFragment extends Fragment {
                 binding.ivUploadAddFlora.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    void dataObserver(){
+        afvm.getAddFloraLiveData().observeForever(new Observer<Long>() {
+            @Override
+            public void onChanged(Long idFlora) {
+                if(idFlora > 0){
+                    if(dataImage != null){
+                        addNewImage(idFlora);
+                    }
+                    Toast.makeText(getContext(), "Flora creada", Toast.LENGTH_SHORT).show();
+                }
+                afvm.getAddFloraLiveData().removeObserver(this);
+                navigateToFirstFragment();
+            }
+        });
     }
 
     private void fillEditTextArrayList(){
@@ -184,7 +185,7 @@ public class AddFloraFragment extends Fragment {
         initializeButtons();
         initializeEditTexts();
         fillEditTextArrayList();
-        datosBundle();
+        dataBundle();
         dataObserver();
         textListener();
     }
@@ -210,7 +211,8 @@ public class AddFloraFragment extends Fragment {
         binding.btAddAddFlora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(et_Nombre_AddFlora.getText().toString().trim().isEmpty()){
+                if(et_Nombre_AddFlora.getText().toString().trim().isEmpty()
+                        || et_Nombre_AddFlora.getText().toString().equals("NO ESPECIFICADO")){
                     binding.tiNombreAddFlora.setErrorEnabled(true);
                     binding.tiNombreAddFlora.setHelperText("* Es necesario rellenar este campo");
                 } else{

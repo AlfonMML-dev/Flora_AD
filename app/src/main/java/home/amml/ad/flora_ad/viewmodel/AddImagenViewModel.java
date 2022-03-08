@@ -33,12 +33,12 @@ public class AddImagenViewModel extends AndroidViewModel {
         repository.saveImagenWithoutIntent(uri, imagen);
     }
 
-//    public void getImages(long id){
-//        repository.getImages(id);
-//    }
-//
-//    public MutableLiveData<ImageRowResponse> getImagesLiveData(){
-//        return repository.getImagesLiveData();
-//    }
+    public void getImages(long id){
+        repository.getImages(id);
+    }
+
+    public MutableLiveData<Imagen[]> getImagesLiveData(){
+        return repository.getImagesLiveData();
+    }
 }
 

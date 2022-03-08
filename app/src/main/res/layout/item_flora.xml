@@ -12,7 +12,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="@color/teal_700"
+        app:cardBackgroundColor="@color/primaryLightColorGreen"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             <ImageView
                 android:id="@+id/iv_ImageMain_ItemFlora"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
@@ -47,6 +47,7 @@
 
             <TextView
                 android:id="@+id/tv_Name_ItemFlora"
+                style="@style/tv_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -60,6 +61,7 @@
 
             <TextView
                 android:id="@+id/tv_NameValue_ItemFlora"
+                style="@style/tv_field_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -72,6 +74,7 @@
 
             <TextView
                 android:id="@+id/tv_Family_ItemFlora"
+                style="@style/tv_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -84,6 +87,7 @@
 
             <TextView
                 android:id="@+id/tv_FamilyValue_ItemFlora"
+                style="@style/tv_field_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

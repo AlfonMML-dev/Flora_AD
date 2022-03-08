@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +44,10 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
 
         Flora flora = floraList.get(position);
-
-        String url_image = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        holder.flora = flora;
+//        String url_image = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFApp/public/api/imagen/";
+//        String url_image = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        String url_image = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
         url_image += flora.getId() + "/flora";
         //Emplear Glide
         Glide.with(context).load(url_image).into(holder.iv_ImageMain_ItemFlora);

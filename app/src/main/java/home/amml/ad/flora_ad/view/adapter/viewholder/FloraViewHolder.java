@@ -1,6 +1,7 @@
 package home.amml.ad.flora_ad.view.adapter.viewholder;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class FloraViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
+                bundle.putByte("decideBundle", (byte) 0);
+                Log.v("FVH itemView", "flora id " + flora.getId());
                 bundle.putParcelable("flora", flora);
                 Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
             }

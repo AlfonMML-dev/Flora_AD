@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import home.amml.ad.flora_ad.model.api.FloraClient;
 import home.amml.ad.flora_ad.model.entity.CreateResponse;
+import home.amml.ad.flora_ad.model.entity.DeleteResponse;
 import home.amml.ad.flora_ad.model.entity.Flora;
 import home.amml.ad.flora_ad.model.entity.Imagen;
 
@@ -19,6 +20,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import home.amml.ad.flora_ad.model.entity.RowsResponse;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,6 +40,11 @@ public class Repository {
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<Imagen[]> imagesLiveData = new MutableLiveData<>();
+    private MutableLiveData<Long> deleteFloraLiveData = new MutableLiveData<>();
+    private MutableLiveData<DeleteResponse> deleteLiveData = new MutableLiveData<>();
+    private MutableLiveData<RowsResponse> editLiveData = new MutableLiveData<>();
+
 
     public Repository(Context context) {
         this.context = context;
@@ -46,76 +53,10 @@ public class Repository {
 
     private FloraClient getFloraClient() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/")
+                .baseUrl("https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(FloraClient.class);
-    }
-
-    public MutableLiveData<ArrayList<Flora>> getFloraLiveData() {
-        return floraLiveData;
-    }
-
-    public MutableLiveData<Flora> getFloraLiveDataId() {
-        return floraLiveDataId;
-    }
-
-    public MutableLiveData<Long> getAddFloraLiveData() {
-        return addFloraLiveData;
-    }
-
-    public MutableLiveData<Long> getAddImagenLiveData() {
-        return addImagenLiveData;
-    }
-
-    public void deleteFlora(long id) {
-        Call<DeleteResponse> delete = floraClient.deleteFlora(id);
-        delete.enqueue(new Callback<DeleteResponse>() {
-            @Override
-            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
-                //deleteLiveData.setValue(response.body().intValue());
-                secondDelete.setValue(response.body().rows);
-                Log.v(":::DELETE", response.body()+"");
-                Log.v(":::DELETELD", secondDelete.getValue()+"");
-            }
-
-            @Override
-            public void onFailure(Call<DeleteResponse> call, Throwable t) {
-                Log.v(":::DELETEFail", t.toString());
-            }
-        });
-    }
-
-    public void getFlora(long id) {
-        Call<Flora> call = floraClient.getFlora(id);
-        call.enqueue(new Callback<Flora>() {
-            @Override
-            public void onResponse(Call<Flora> call, Response<Flora> response) {
-                floraLiveDataId.setValue(response.body());
-                Log.v("xyzxyz", response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Flora> call, Throwable t) {
-                Log.v("xyzxyz", t.getLocalizedMessage());
-            }
-        });
-    }
-
-    public void getFlora() {
-        Call<ArrayList<Flora>> call = floraClient.getFlora();
-        call.enqueue(new Callback<ArrayList<Flora>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Flora>> call, Response<ArrayList<Flora>> response) {
-                floraLiveData.setValue(response.body());
-                Log.v("Repository_OnResponse", response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Flora>> call, Throwable t) {
-                Log.v("Repository_OnFailure", t.getLocalizedMessage());
-            }
-        });
     }
 
     public void createFlora(Flora flora) {
@@ -129,44 +70,6 @@ public class Repository {
             @Override
             public void onFailure(Call<CreateResponse> call, Throwable t) {
 
-            }
-        });
-    }
-
-    public void editFlora(long id, Flora flora) {
-
-    }
-
-    public void saveImagen(Intent intent, Imagen imagen) {
-        String nombre = "xyzyx.abc";
-        copyData(intent, nombre);
-        File file = new File(context.getExternalFilesDir(null), nombre);
-        Log.v("xyzyx", file.getAbsolutePath());
-        subirImagen(file, imagen);
-    }
-
-    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
-        String nombre = "xyzyx.abc";
-        copyDataWithoutIntent(uri, nombre);
-        File file = new File(context.getExternalFilesDir(null), nombre);
-        Log.v("Repo saveWithout", file.getAbsolutePath());
-        subirImagen(file, imagen);
-    }
-
-    private void subirImagen(File file, Imagen imagen) {
-        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", imagen.nombre + ".jpg", requestFile);
-        Call<Long> call = floraClient.subirImagen(body, imagen.idflora, imagen.descripcion);
-        call.enqueue(new Callback<Long>() {
-            @Override
-            public void onResponse(Call<Long> call, Response<Long> response) {
-                addImagenLiveData.setValue(response.body());
-                Log.v("xyzyx", "ok");
-            }
-
-            @Override
-            public void onFailure(Call<Long> call, Throwable t) {
-                Log.v("xyzyx", "error");
             }
         });
     }
@@ -220,5 +123,148 @@ public class Repository {
             Log.v("Repo copyWithoutException", e.toString());
         }
         return result;
+    }
+
+    public void deleteFlora(long id) {
+        Call<DeleteResponse> delete = floraClient.deleteFlora(id);
+        delete.enqueue(new Callback<DeleteResponse>() {
+            @Override
+            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+                deleteFloraLiveData.setValue((long) response.body().rows);
+//                Log.v("Repo deleteOnResponse", "body " + response.body() + ", value "
+//                        + deleteFloraLiveData.getValue());
+            }
+
+            @Override
+            public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                Log.v("Repo failDeleteOnResponse", t.toString());
+            }
+        });
+    }
+
+    public void editFlora(long id, Flora flora) {
+        Call<RowsResponse> edit = floraClient.editFlora(id, flora);
+        edit.enqueue(new Callback<RowsResponse>() {
+            @Override
+            public void onResponse(Call<RowsResponse> call, Response<RowsResponse> response) {
+                editLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<RowsResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getFlora(long id) {
+        Call<Flora> call = floraClient.getFlora(id);
+        call.enqueue(new Callback<Flora>() {
+            @Override
+            public void onResponse(Call<Flora> call, Response<Flora> response) {
+                floraLiveDataId.setValue(response.body());
+                Log.v("xyzxyz", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Flora> call, Throwable t) {
+                Log.v("xyzxyz", t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void getFlora() {
+        Call<ArrayList<Flora>> call = floraClient.getFlora();
+        call.enqueue(new Callback<ArrayList<Flora>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Flora>> call, Response<ArrayList<Flora>> response) {
+                floraLiveData.setValue(response.body());
+                Log.v("Repository_OnResponse", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Flora>> call, Throwable t) {
+                Log.v("Repository_OnFailure", t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public MutableLiveData<ArrayList<Flora>> getFloraLiveData() {
+        return floraLiveData;
+    }
+
+    public MutableLiveData<Flora> getFloraLiveDataId() {
+        return floraLiveDataId;
+    }
+
+    public MutableLiveData<Long> getAddFloraLiveData() {
+        return addFloraLiveData;
+    }
+
+    public MutableLiveData<Long> getAddImagenLiveData() {
+        return addImagenLiveData;
+    }
+
+    public MutableLiveData<RowsResponse> getEditLiveData() {
+        return editLiveData;
+    }
+
+    public MutableLiveData<DeleteResponse> getDeleteLiveData(){
+        return this.deleteLiveData;
+    }
+
+    public MutableLiveData<Imagen[]> getImagesLiveData(){
+        return this.imagesLiveData;
+    }
+
+
+
+    public void getImages(long id){
+        Call<Imagen[]> images = floraClient.getImages(id);
+        images.enqueue(new Callback<Imagen[]>() {
+            @Override
+            public void onResponse(Call<Imagen[]> call, Response<Imagen[]> response) {
+                imagesLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Imagen[]> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void saveImagen(Intent intent, Imagen imagen) {
+        String nombre = "xyzyx.abc";
+        copyData(intent, nombre);
+        File file = new File(context.getExternalFilesDir(null), nombre);
+        Log.v("xyzyx", file.getAbsolutePath());
+        subirImagen(file, imagen);
+    }
+
+    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
+        String nombre = "xyzyx.abc";
+        copyDataWithoutIntent(uri, nombre);
+        File file = new File(context.getExternalFilesDir(null), nombre);
+        Log.v("Repo saveWithout", file.getAbsolutePath());
+        subirImagen(file, imagen);
+    }
+
+    private void subirImagen(File file, Imagen imagen) {
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", imagen.nombre + ".jpg", requestFile);
+        Call<Long> call = floraClient.subirImagen(body, imagen.idflora, imagen.descripcion);
+        call.enqueue(new Callback<Long>() {
+            @Override
+            public void onResponse(Call<Long> call, Response<Long> response) {
+                addImagenLiveData.setValue(response.body());
+                Log.v("xyzyx", "ok");
+            }
+
+            @Override
+            public void onFailure(Call<Long> call, Throwable t) {
+                Log.v("xyzyx", "error");
+            }
+        });
     }
 }

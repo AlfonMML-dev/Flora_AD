@@ -8,15 +8,17 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
+import java.util.ArrayList;
+
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.view.adapter.viewholder.SliderImageViewHolder;
 
 public class SliderImageAdapter extends SliderViewAdapter<SliderImageViewHolder> {
 
-    String[] images;
+    ArrayList<String> images;
     Context ctx;
 
-    public SliderImageAdapter(String[] images, Context ctx) {
+    public SliderImageAdapter(ArrayList<String> images, Context ctx) {
         this.images = images;
         this.ctx = ctx;
     }
@@ -32,13 +34,18 @@ public class SliderImageAdapter extends SliderViewAdapter<SliderImageViewHolder>
 
     @Override
     public void onBindViewHolder(SliderImageViewHolder viewHolder, int position) {
-        Glide.with(ctx).load(images[position]).into(viewHolder.iv_Slide_Item);
+        Glide.with(ctx).load(images.get(position)).into(viewHolder.iv_Slide_Item);
     }
 
     @Override
     public int getCount() {
         if (images == null)
             return 0;
-        return images.length;
+        return images.size();
+    }
+
+    public void setSliderList(ArrayList<String> sliderDataArrayList) {
+        this.images = sliderDataArrayList;
+        notifyDataSetChanged();
     }
 }

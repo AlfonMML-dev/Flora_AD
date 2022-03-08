@@ -82,10 +82,12 @@ public class AddImagenFragment extends Fragment {
             DataImage dataImage = new DataImage(imageUri, nombre, descripcion);
             //Indicamos que el bundle está completo
             bundle.putBoolean("completeBundle", true);
+            bundle.putByte("decideBundle", (byte) 1);
             //Pasar objeto al bundle
             bundle.putParcelable("dataImage", dataImage);
         } else{
             bundle.putBoolean("completeBundle", false);
+            bundle.putByte("decideBundle", (byte) 1);
         }
         if(fragmentOrigin == 0){
              navigateToSecondFragment(bundle);

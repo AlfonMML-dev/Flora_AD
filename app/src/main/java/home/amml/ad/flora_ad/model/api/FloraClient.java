@@ -1,7 +1,9 @@
 package home.amml.ad.flora_ad.model.api;
 
 import home.amml.ad.flora_ad.model.entity.CreateResponse;
+import home.amml.ad.flora_ad.model.entity.DeleteResponse;
 import home.amml.ad.flora_ad.model.entity.Flora;
+import home.amml.ad.flora_ad.model.entity.Imagen;
 import home.amml.ad.flora_ad.model.entity.RowsResponse;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import retrofit2.http.Path;
 public interface FloraClient {
 
     @DELETE("api/flora/{id}")
-    Call<RowsResponse> deleteFlora(@Path("id") long id);
+    Call<DeleteResponse> deleteFlora(@Path("id") long id);
 
     @GET("api/flora/{id}")
     Call<Flora> getFlora(@Path("id") long id);
@@ -37,4 +39,7 @@ public interface FloraClient {
     @Multipart
     @POST("api/imagen/subir")
     Call<Long> subirImagen(@Part MultipartBody.Part file, @Part("idflora") long idFlora, @Part("descripcion") String descripcion);
+
+    @GET("api/flora/{idflora}/imagen")
+    Call<Imagen[]> getImages(@Path("idflora") long idflora);
 }

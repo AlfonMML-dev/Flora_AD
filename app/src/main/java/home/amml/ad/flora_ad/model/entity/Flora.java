@@ -82,6 +82,38 @@ public class Flora implements Parcelable {
         }
     };
 
+    public ArrayList<String> getAtributtes(){
+        ArrayList<String> editTextsValues = new ArrayList<>();
+
+        editTextsValues.add(getNombre());
+        editTextsValues.add(getFamilia());
+        editTextsValues.add(getAltitud());
+
+        editTextsValues.add(getHabitat());
+        editTextsValues.add(getFitosociologia());
+        editTextsValues.add(getBiotipo());
+
+        editTextsValues.add(getBiologia_reproductiva());
+        editTextsValues.add(getFloracion());
+        editTextsValues.add(getFructificacion());
+
+        editTextsValues.add(getExpresion_sexual());
+        editTextsValues.add(getPolinizacion());
+        editTextsValues.add(getDispersion());
+
+        editTextsValues.add(getNumero_cromosomatico());
+        editTextsValues.add(getReproduccion_asexual());
+        editTextsValues.add(getDistribucion());
+
+        editTextsValues.add(getBiologia());
+        editTextsValues.add(getDemografia());
+        editTextsValues.add(getAmenazas());
+
+        editTextsValues.add(getMedidas_propuestas());
+
+        return editTextsValues;
+    }
+
     public void setAtributtes(ArrayList<String> editTextsValues){
         setNombre(editTextsValues.get(0));
         setFamilia(editTextsValues.get(1));
