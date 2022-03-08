@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/tv_AddNewImagen_AddImagen"
+        android:text="@string/tv_ClickInCloud_AddImagen"
         app:layout_constraintBottom_toTopOf="@+id/iv_Upload_AddImagen"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddImagen"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddImagen"
@@ -56,16 +56,15 @@
 
     <ImageView
         android:id="@+id/iv_Upload_AddImagen"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/description_iv_Upload_AddImagen"
+        android:src="@drawable/upload_svgrepo_com"
         app:layout_constraintBottom_toTopOf="@+id/guideline_H_iv_Upload_AddImagen"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddImagen"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddImagen"
-        app:layout_constraintTop_toBottomOf="@+id/tv_AddNewImagen_AddImagen"
-        tools:src="@drawable/ic_baseline_cloud_upload_24" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_AddNewImagen_AddImagen" />
 
     <ScrollView
         android:id="@+id/scrollView_AddImagen"

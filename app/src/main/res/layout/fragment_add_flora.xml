@@ -46,12 +46,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
+        android:src="@drawable/upload_svgrepo_com"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline_H_iv_Upload_AddFlora"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_AddFlora"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_AddFlora"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline_HTop_AddFlora" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_H_iv_Upload_AddFlora"
@@ -99,7 +99,7 @@
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUploadImageVideoGame">
+                app:layout_constraintTop_toBottomOf="@+id/bt_AddImage_AddFlora">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Nombre_AddFlora"

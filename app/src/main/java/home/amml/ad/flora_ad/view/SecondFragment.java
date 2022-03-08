@@ -76,7 +76,7 @@ public class SecondFragment extends Fragment {
     }
 
     private void saveAction(){
-        //Hay que subir la flora a la base de datos con la API
+        //Hay que actualizar la flora a la base de datos con la API
 
         NavHostFragment.findNavController(SecondFragment.this)
                 .navigate(R.id.action_SecondFragment_to_FirstFragment);

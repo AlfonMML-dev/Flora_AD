@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +20,13 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentAddFloraBinding;
+import home.amml.ad.flora_ad.model.entity.DataImage;
 import home.amml.ad.flora_ad.model.entity.Flora;
+import home.amml.ad.flora_ad.model.entity.Imagen;
 import home.amml.ad.flora_ad.viewmodel.AddFloraViewModel;
 import home.amml.ad.flora_ad.viewmodel.AddImagenViewModel;
 
@@ -31,6 +36,8 @@ public class AddFloraFragment extends Fragment {
 
     private AddFloraViewModel afvm;
     private AddImagenViewModel aivm;
+    private DataImage dataImage = null;
+
     private Bundle bundle;
 
     private TextInputEditText et_Nombre_AddFlora, et_Familia_AddFlora, et_Altitud_AddFlora,
@@ -66,9 +73,27 @@ public class AddFloraFragment extends Fragment {
 
         //Subimos la flora a la base de datos usando la api
         afvm.createFlora(flora);
+    }
 
-        navigateToFirstFragment();
+    private void addNewImage(Long id){
+        Imagen imagen = new Imagen();
+        imagen.nombre = dataImage.nombre;
+        imagen.descripcion = dataImage.descripcion;
+        imagen.idflora = id;
+        Log.v("AFF addNewImage", "flora id " + id);
+        aivm.saveImagenWithoutIntent(dataImage.uri, imagen);
+    }
 
+    void dataObserver(){
+        afvm.getAddFloraLiveData().observeForever(idFlora ->{
+            if(idFlora > 0){
+                if(dataImage != null){
+                    addNewImage(idFlora);
+                }
+                Toast.makeText(getContext(), "Flora creada", Toast.LENGTH_SHORT).show();
+            }
+            navigateToFirstFragment();
+        });
     }
 
     private void datosBundle(){
@@ -78,7 +103,12 @@ public class AddFloraFragment extends Fragment {
             bundle = getArguments();
             ArrayList<String> editTextsValues = bundle.getStringArrayList("editTextsValues");
             fillEditTexts(editTextsValues);
-            bundle = null;
+            if(bundle.getBoolean("completeBundle")){
+                dataImage = bundle.getParcelable("dataImage");
+                Log.v("AFF datosBundle", dataImage.uri.toString());
+                binding.ivUploadAddFlora.setImageURI(dataImage.uri);
+                binding.ivUploadAddFlora.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -114,14 +144,19 @@ public class AddFloraFragment extends Fragment {
 
     private void fillEditTexts(ArrayList<String> editTextsValues){
         for (int i = 0; i < editTextArrayList.size(); i++) {
-            editTextArrayList.get(i).setText(editTextsValues.get(i));
+            if(editTextsValues.get(i).equals("NO ESPECIFICADO")){
+                editTextArrayList.get(i).setText("");
+            } else{
+                editTextArrayList.get(i).setText(editTextsValues.get(i));
+            }
         }
     }
 
+    //True nulo o vacío, false lleno
     private ArrayList<Boolean> getEditTextsNullsAndEmpties(){
         ArrayList<Boolean> result = new ArrayList<>();
         for (TextInputEditText editText: editTextArrayList) {
-            if(editText.getText() == null || editText.getText().toString().isEmpty()){
+            if(editText.getText() == null || editText.getText().toString().trim().isEmpty()){
                 result.add(true);
             } else{
                 result.add(false);
@@ -144,12 +179,13 @@ public class AddFloraFragment extends Fragment {
     }
 
     private void initialize(){
+        afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
+        aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
         initializeButtons();
         initializeEditTexts();
         fillEditTextArrayList();
         datosBundle();
-        afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
-//        aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
+        dataObserver();
         textListener();
     }
 
@@ -159,6 +195,7 @@ public class AddFloraFragment extends Fragment {
             public void onClick(View view) {
                 bundle = null;
                 bundle = new Bundle();
+                bundle.putByte("fragmentOrigin", (byte) 1);
                 bundle.putStringArrayList("editTextsValues", getEditTextsValues());
                 navigateToAddImagenFragment();
             }
@@ -221,7 +258,7 @@ public class AddFloraFragment extends Fragment {
 
     private void navigateToAddImagenFragment(){
         NavHostFragment.findNavController(AddFloraFragment.this)
-                .navigate(R.id.action_addFloraFragment_to_addImagenFragment);
+                .navigate(R.id.action_addFloraFragment_to_addImagenFragment, bundle);
     }
 
     void textListener(){

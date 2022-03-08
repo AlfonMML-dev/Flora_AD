@@ -67,7 +67,7 @@
 
     <!-- fragment_add_imagen -->
     <string name="description_iv_Upload_AddImagen">Uploaded Image by User</string>
-    <string name="tv_AddNewImagen_AddImagen">Agregar nueva imagen</string>
+    <string name="tv_ClickInCloud_AddImagen">Haz Clic en la Nube</string>
     <string name="bt_Cancel_AddImagen">Cancelar</string>
     <string name="bt_Add_AddImagen">Agregar</string>
     <string name="hint_Nombre_AddImagen">Nombre</string>

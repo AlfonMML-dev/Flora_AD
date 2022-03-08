@@ -31,25 +31,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Repository {
 
     private Context context;
-    private static FloraClient floraClient;
+    private FloraClient floraClient;
 
     private MutableLiveData<ArrayList<Flora>> floraLiveData = new MutableLiveData<>();
     private MutableLiveData<Flora> floraLiveDataId = new MutableLiveData<>();
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
 
-    static {
-        floraClient = getFloraClient();
-    }
 
     public Repository(Context context) {
         this.context = context;
+        floraClient = getFloraClient();
     }
 
-    //Cambiar la Url
-    private static FloraClient getFloraClient() {
+    private FloraClient getFloraClient() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFApp/public/")
+                .baseUrl("https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(FloraClient.class);
@@ -72,7 +69,21 @@ public class Repository {
     }
 
     public void deleteFlora(long id) {
+        Call<DeleteResponse> delete = floraClient.deleteFlora(id);
+        delete.enqueue(new Callback<DeleteResponse>() {
+            @Override
+            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+                //deleteLiveData.setValue(response.body().intValue());
+                secondDelete.setValue(response.body().rows);
+                Log.v(":::DELETE", response.body()+"");
+                Log.v(":::DELETELD", secondDelete.getValue()+"");
+            }
 
+            @Override
+            public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                Log.v(":::DELETEFail", t.toString());
+            }
+        });
     }
 
     public void getFlora(long id) {
@@ -134,9 +145,17 @@ public class Repository {
         subirImagen(file, imagen);
     }
 
+    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
+        String nombre = "xyzyx.abc";
+        copyDataWithoutIntent(uri, nombre);
+        File file = new File(context.getExternalFilesDir(null), nombre);
+        Log.v("Repo saveWithout", file.getAbsolutePath());
+        subirImagen(file, imagen);
+    }
+
     private void subirImagen(File file, Imagen imagen) {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", imagen.nombre, requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", imagen.nombre + ".jpg", requestFile);
         Call<Long> call = floraClient.subirImagen(body, imagen.idflora, imagen.descripcion);
         call.enqueue(new Callback<Long>() {
             @Override
@@ -174,6 +193,31 @@ public class Repository {
         } catch (IOException e) {
             result = false;
             Log.v("xyzyx", e.toString());
+        }
+        return result;
+    }
+
+    private boolean copyDataWithoutIntent(Uri uri, String name) {
+        Log.v("Repo copyWithout", "copyData");
+        boolean result = true;
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = context.getContentResolver().openInputStream(uri);
+            out = new FileOutputStream(new File(context.getExternalFilesDir(null), name));
+            byte[] buffer = new byte[1024];
+            int len;
+            int cont = 0;
+            while ((len = in.read(buffer)) != -1) {
+                cont++;
+                Log.v("xyzyx", "copyData" + cont);
+                out.write(buffer, 0, len);
+            }
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            result = false;
+            Log.v("Repo copyWithoutException", e.toString());
         }
         return result;
     }

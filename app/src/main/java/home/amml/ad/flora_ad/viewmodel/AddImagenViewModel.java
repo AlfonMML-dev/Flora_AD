@@ -3,6 +3,7 @@ package home.amml.ad.flora_ad.viewmodel;
 
 import android.app.Application;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -26,6 +27,10 @@ public class AddImagenViewModel extends AndroidViewModel {
 
     public void saveImagen(Intent intent, Imagen imagen) {
         repository.saveImagen(intent, imagen);
+    }
+
+    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
+        repository.saveImagenWithoutIntent(uri, imagen);
     }
 
 //    public void getImages(long id){

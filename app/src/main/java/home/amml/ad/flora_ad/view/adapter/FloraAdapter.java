@@ -28,8 +28,6 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     private ArrayList<Flora> floraList;
     private ArrayList<Imagen> imagenList;
 
-    final String URL_IMG = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFapp/public/api/imagen/";
-
     public FloraAdapter(Context context) {
         this.context = context;
     }
@@ -45,12 +43,12 @@ public class FloraAdapter extends RecyclerView.Adapter<FloraViewHolder> {
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
 
         Flora flora = floraList.get(position);
-//        Imagen imagen = imagenList.get(position);
 
+        String url_image = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        url_image += flora.getId() + "/flora";
         //Emplear Glide
-        //Glide.with(context).load(imagen.getImagenPrincipal()).into(holder.iV_Car_Item_Car);
-        // holder.ivFlora.setImageResource(Integer.parseInt(imagen.getNombre()));
-//        holder.tv_IDFlora_ItemFlora.setText("ID Flora" + flora.getId());
+        Glide.with(context).load(url_image).into(holder.iv_ImageMain_ItemFlora);
+
         holder.tv_NameValue_ItemFlora.setText(flora.getNombre());
         holder.tv_FamilyValue_ItemFlora.setText(flora.getFamilia());
     }

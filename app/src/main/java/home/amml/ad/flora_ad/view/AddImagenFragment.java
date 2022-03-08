@@ -9,7 +9,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -22,8 +21,7 @@ import java.util.Date;
 
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentAddImagenBinding;
-import home.amml.ad.flora_ad.model.entity.Imagen;
-import home.amml.ad.flora_ad.viewmodel.AddImagenViewModel;
+import home.amml.ad.flora_ad.model.entity.DataImage;
 
 public class AddImagenFragment extends Fragment {
 
@@ -38,6 +36,9 @@ public class AddImagenFragment extends Fragment {
     private Uri imageUri = null;
 
     private boolean imageSelected;
+
+    //0 indica que esta clase es llamada desde SecondFragment, 1 desde AddFloraFragment
+    private byte fragmentOrigin;
 
     @Override
     public View onCreateView(
@@ -56,33 +57,50 @@ public class AddImagenFragment extends Fragment {
     }
 
     private void addNewImage(){
-        selectImage();
         if(imageSelected && imageUri != null){
-            bundle.putBoolean("completeBundle", true);
-            //Añadir el resto al bundle
-            String[] dataImage = new String[3];
-            //Uri de la imagen
-            dataImage[0] = imageUri.toString();
             //Nombre de la imagen
-            String nombre = String.valueOf(new Date().getTime());
-            if(et_Nombre_AddImagen.getText() != null
-                    && !et_Nombre_AddImagen.getText().toString().isEmpty()){
-                nombre = et_Nombre_AddImagen.getText().toString() + "_" + new Date().getTime();
+            String nombre = "";
+            if(checkEditTextContent(et_Nombre_AddImagen)){
+                if(et_Nombre_AddImagen.getText().toString().length() >= 50){
+                    nombre = et_Nombre_AddImagen.getText().toString().trim().substring(0, 40);
+                } else{
+                    nombre = et_Nombre_AddImagen.getText().toString().trim();
+                }
+                nombre = nombre.toLowerCase();
+                nombre += "_" + new Date().getTime();
+            } else{
+                nombre = String.valueOf(new Date().getTime());
             }
-            dataImage[1] = nombre;
             //Descripcion de la imagen
-            String descripcion = "flora bonita";
-            if(et_Descripcion_AddImagen.getText() != null
-                    && !et_Descripcion_AddImagen.getText().toString().isEmpty()){
+            String descripcion;
+            if(checkEditTextContent(et_Descripcion_AddImagen)){
                 descripcion = et_Nombre_AddImagen.getText().toString();
+            } else{
+                descripcion = "flora bonita";
             }
-            dataImage[2] = descripcion;
-            //Pasar array al bundle
-            bundle.putStringArray("dataImage", dataImage);
+            //Creamos un objeto DataImage
+            DataImage dataImage = new DataImage(imageUri, nombre, descripcion);
+            //Indicamos que el bundle está completo
+            bundle.putBoolean("completeBundle", true);
+            //Pasar objeto al bundle
+            bundle.putParcelable("dataImage", dataImage);
         } else{
             bundle.putBoolean("completeBundle", false);
         }
-        navigateToAddFloraFragment(bundle);
+        if(fragmentOrigin == 0){
+             navigateToSecondFragment(bundle);
+        } else{
+            navigateToAddFloraFragment(bundle);
+        }
+
+    }
+
+    private boolean checkEditTextContent(TextInputEditText et){
+        boolean result = false;
+        if(et.getText() != null && !et.getText().toString().trim().isEmpty()){
+            result = true;
+        }
+        return result;
     }
 
     ActivityResultLauncher<Intent> getLauncher() {
@@ -93,6 +111,7 @@ public class AddImagenFragment extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         resultadoImagen = result.getData();
                         imageUri = resultadoImagen.getData();
+                        binding.ivUploadAddImagen.setImageURI(imageUri);
                         imageSelected = true;
                     }
                 }
@@ -108,6 +127,7 @@ public class AddImagenFragment extends Fragment {
 
     private void initialize(){
         bundle = getArguments();
+        fragmentOrigin = bundle.getByte("fragmentOrigin");
         imageSelected = false;
         launcher = getLauncher();
         initializeButtons();
@@ -119,9 +139,7 @@ public class AddImagenFragment extends Fragment {
         binding.btCancelAddImagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("completeBundle", false);
-                navigateToAddFloraFragment(bundle);
+                getChildFragmentManager().popBackStack();
             }
         });
 
@@ -150,6 +168,11 @@ public class AddImagenFragment extends Fragment {
     private void navigateToAddFloraFragment(Bundle bundle){
         NavHostFragment.findNavController(AddImagenFragment.this)
                 .navigate(R.id.action_addImagenFragment_to_addFloraFragment, bundle);
+    }
+
+    private void navigateToSecondFragment(Bundle bundle){
+        NavHostFragment.findNavController(AddImagenFragment.this)
+                .navigate(R.id.action_addImagenFragment_to_SecondFragment, bundle);
     }
 
     private void selectImage(){
