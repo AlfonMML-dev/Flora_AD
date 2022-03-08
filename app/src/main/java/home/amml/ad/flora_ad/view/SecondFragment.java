@@ -197,11 +197,12 @@ public class SecondFragment extends Fragment {
         sliderImageAdapter = new SliderImageAdapter(sliderDataArrayList, getContext());
         sliderView.setSliderAdapter(sliderImageAdapter);
 
-        String url_img = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        //String url_img = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
         aivm.getImages(flora.getId());
         images.observe(this, image->{
             for (int i = 0; i < image.length; i++) {
-                sliderDataArrayList.add(url_img + image[i].id);
+                sliderDataArrayList.add(url_img + "/" + image[i].id);
             }
             sliderImageAdapter.setSliderList(sliderDataArrayList);
         });
@@ -239,7 +240,6 @@ public class SecondFragment extends Fragment {
         initializeButtons();
         initializeEditTexts();
         initializeFAB();
-        initializeMenu();
         fillEditTextArrayList();
 
         if(decideBundle() == 0){
@@ -327,14 +327,6 @@ public class SecondFragment extends Fragment {
                 navigateToAddImagenFragment();
             }
         });
-    }
-
-    private void initializeMenu(){
-        MainActivity.toolbar.inflateMenu(R.menu.menu_edit);
-        MainActivity.toolbar.setOnMenuItemClickListener( item->{
-            return onOptionsItemSelected(item);
-        });
-
     }
 
     private void navigateToFirstFragment(){

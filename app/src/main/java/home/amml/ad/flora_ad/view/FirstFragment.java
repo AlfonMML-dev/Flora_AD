@@ -3,11 +3,14 @@ package home.amml.ad.flora_ad.view;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -41,10 +44,11 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initialize();
+        initialize(view);
     }
 
-    private void initialize(){
+    private void initialize(View view){
+        hideMenu(view);
         initializeFAB();
         initializeRecycler();
     }
@@ -57,6 +61,22 @@ public class FirstFragment extends Fragment {
         binding.fabAddFlora.setOnClickListener(v ->
                 NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_addFloraFragment));
+    }
+
+    private void hideMenu(View view){
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_edit, menu);
+        if(menu.findItem(R.id.delete_opt) != null){
+//            menu.findItem(R.id.delete_opt).setEnabled(false);
+            menu.findItem(R.id.delete_opt).setVisible(false);
+        }
     }
 
     /**
