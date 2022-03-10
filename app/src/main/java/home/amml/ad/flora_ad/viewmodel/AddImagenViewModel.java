@@ -22,7 +22,7 @@ public class AddImagenViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<Long> getAddImagenLiveData() {
-        return repository.getAddFloraLiveData();
+        return repository.getAddImagenLiveData();
     }
 
     public void saveImagen(Intent intent, Imagen imagen) {

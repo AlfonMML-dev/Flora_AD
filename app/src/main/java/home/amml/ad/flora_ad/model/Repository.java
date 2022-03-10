@@ -133,9 +133,9 @@ public class Repository {
         delete.enqueue(new Callback<DeleteResponse>() {
             @Override
             public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
-                deleteFloraLiveData.setValue((long) response.body().rows);
-//                Log.v("Repo deleteOnResponse", "body " + response.body() + ", value "
-//                        + deleteFloraLiveData.getValue());
+                deleteLiveData.setValue(response.body());
+                Log.v("Repo deleteOnResponse", "body " + response.body() + ", value "
+                        + deleteLiveData.getValue());
             }
 
             @Override

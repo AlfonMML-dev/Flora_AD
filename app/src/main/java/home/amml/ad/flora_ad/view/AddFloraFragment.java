@@ -198,33 +198,22 @@ public class AddFloraFragment extends Fragment {
     }
 
     private void initializeButtons(){
-        binding.btAddImageAddFlora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bundle = null;
-                bundle = new Bundle();
-                bundle.putByte("fragmentOrigin", (byte) 1);
-                bundle.putStringArrayList("editTextsValues", getEditTextsValues());
-                navigateToAddImagenFragment();
-            }
+        binding.btAddImageAddFlora.setOnClickListener(view -> {
+            bundle = null;
+            bundle = new Bundle();
+            bundle.putByte("fragmentOrigin", (byte) 1);
+            bundle.putStringArrayList("editTextsValues", getEditTextsValues());
+            navigateToAddImagenFragment();
         });
-        binding.btCancelAddFlora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFirstFragment();
-            }
-        });
+        binding.btCancelAddFlora.setOnClickListener(view -> navigateToFirstFragment());
 
-        binding.btAddAddFlora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(et_Nombre_AddFlora.getText().toString().trim().isEmpty()
-                        || et_Nombre_AddFlora.getText().toString().equals("NO ESPECIFICADO")){
-                    binding.tiNombreAddFlora.setErrorEnabled(true);
-                    binding.tiNombreAddFlora.setHelperText("* Es necesario rellenar este campo");
-                } else{
-                    addNewFlora();
-                }
+        binding.btAddAddFlora.setOnClickListener(view -> {
+            if(et_Nombre_AddFlora.getText().toString().trim().isEmpty()
+                    || et_Nombre_AddFlora.getText().toString().equals("NO ESPECIFICADO")){
+                binding.tiNombreAddFlora.setErrorEnabled(true);
+                binding.tiNombreAddFlora.setHelperText("* Es necesario rellenar este campo");
+            } else{
+                addNewFlora();
             }
         });
     }

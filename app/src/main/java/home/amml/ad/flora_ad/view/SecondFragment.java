@@ -91,20 +91,14 @@ public class SecondFragment extends Fragment {
         builder.setTitle("¿Seguro de eliminar la flora?");
         builder.setMessage("Esta acción no se puede deshacer");
 
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                mavm.deleteFlora(flora.getId());
-                mavm.getFloraLiveData().observe(SecondFragment.this, integer ->{
-                    Toast.makeText(getContext(), "Flora borrada", Toast.LENGTH_SHORT).show();
-                    NavHostFragment.findNavController(SecondFragment.this).popBackStack();
-                });
-            }
+        builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
+            mavm.deleteFlora(flora.getId());
+            mavm.getDeleteLiveData().observe(SecondFragment.this, integer ->{
+                Toast.makeText(getContext(), "Flora borrada", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(SecondFragment.this).popBackStack();
+            });
         });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
+        builder.setNegativeButton("Cancelar", (dialogInterface, i) -> {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -115,9 +109,7 @@ public class SecondFragment extends Fragment {
         fillEditTexts(editTextsValues);
         if(flora == null){
             idFlora = bundle.getLong("idFlora");
-//            mavm.getFlora();
             Log.v("SFF dataBundle", idFlora + "");
-//            flora = mavm.getFloraLiveData().getValue().get((int) idFlora);
             flora = new Flora();
             flora.setId(idFlora);
             flora.setAtributtes(editTextsValues);
@@ -268,31 +260,18 @@ public class SecondFragment extends Fragment {
     }
 
     private void initializeButtons(){
-        binding.btCancelSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
+        binding.btCancelSecond.setOnClickListener(view -> NavHostFragment.findNavController(SecondFragment.this)
+                .navigate(R.id.action_SecondFragment_to_FirstFragment));
+
+        binding.btEditSecond.setOnClickListener(view -> {
+            binding.btEditSecond.setVisibility(View.GONE);
+            binding.btEditSecond.setEnabled(false);
+            enableEditTextArrayList(true);
+            binding.btSaveSecond.setVisibility(View.VISIBLE);
+            binding.btSaveSecond.setEnabled(true);
         });
 
-        binding.btEditSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.btEditSecond.setVisibility(View.GONE);
-                binding.btEditSecond.setEnabled(false);
-                enableEditTextArrayList(true);
-                binding.btSaveSecond.setVisibility(View.VISIBLE);
-                binding.btSaveSecond.setEnabled(true);
-            }
-        });
-
-        binding.btSaveSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveAction();
-            }
-        });
+        binding.btSaveSecond.setOnClickListener(view -> saveAction());
     }
 
     private void initializeEditTexts() {
