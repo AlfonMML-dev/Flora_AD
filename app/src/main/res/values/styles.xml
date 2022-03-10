@@ -9,6 +9,11 @@
     <style name="fab_AddImage_style" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.SmallComponent</item>
     </style>
+    
+    <style name="buttonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="iconTint">@color/button_TextColor</item>
+        <item name="android:textColor">@color/button_TextColor</item>
+    </style>
 
     <style name="card" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">5dp</item>
@@ -24,6 +29,7 @@
     <style name="tv_field" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="tv_field_value" parent="Widget.AppCompat.TextView">

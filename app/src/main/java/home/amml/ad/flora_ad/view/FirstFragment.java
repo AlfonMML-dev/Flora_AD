@@ -44,11 +44,15 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initialize(view);
+        initialize();
     }
 
-    private void initialize(View view){
-        hideMenu(view);
+    private void hideMenu(){
+        setHasOptionsMenu(true);
+    }
+
+    private void initialize(){
+        hideMenu();
         initializeFAB();
         initializeRecycler();
     }
@@ -61,22 +65,6 @@ public class FirstFragment extends Fragment {
         binding.fabAddFlora.setOnClickListener(v ->
                 NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_addFloraFragment));
-    }
-
-    private void hideMenu(View view){
-        setHasOptionsMenu(true);
-
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.menu_edit, menu);
-        if(menu.findItem(R.id.delete_opt) != null){
-//            menu.findItem(R.id.delete_opt).setEnabled(false);
-            menu.findItem(R.id.delete_opt).setVisible(false);
-        }
     }
 
     /**
@@ -94,6 +82,17 @@ public class FirstFragment extends Fragment {
             floraAdapter.setFloraList(floraPlural);
         });
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_edit, menu);
+        if(menu.findItem(R.id.delete_opt) != null){
+//            menu.findItem(R.id.delete_opt).setEnabled(false);
+            menu.findItem(R.id.delete_opt).setVisible(false);
+        }
     }
 
     @Override

@@ -45,6 +45,9 @@ public class Repository {
     private MutableLiveData<DeleteResponse> deleteLiveData = new MutableLiveData<>();
     private MutableLiveData<RowsResponse> editLiveData = new MutableLiveData<>();
 
+//    private String url = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFApp/public/";
+    private String url = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/";
+//    private String url = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/";
 
     public Repository(Context context) {
         this.context = context;
@@ -53,7 +56,7 @@ public class Repository {
 
     private FloraClient getFloraClient() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/")
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(FloraClient.class);

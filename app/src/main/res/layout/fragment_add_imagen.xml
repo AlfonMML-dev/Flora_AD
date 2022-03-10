@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_VStart_AddImagen"
@@ -91,7 +91,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:hint="@string/hint_Nombre_AddImagen"
-                app:errorEnabled="true" >
+                app:errorEnabled="true"
+                app:helperText="@string/helperText_Opcional">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Nombre_AddImagen"
@@ -109,7 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:hint="@string/hint_Descripcion_AddImagen"
-                app:errorEnabled="true">
+                app:errorEnabled="true"
+                app:helperText="@string/helperText_Opcional">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_Descripcion_AddImagen"
@@ -126,6 +128,7 @@
 
     <Button
         android:id="@+id/bt_Cancel_AddImagen"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -139,6 +142,7 @@
 
     <Button
         android:id="@+id/bt_Add_AddImagen"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

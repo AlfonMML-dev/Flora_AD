@@ -72,15 +72,13 @@
 
     </com.smarteist.autoimageslider.SliderView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_AddImage_Second"
-        style="@style/fab_AddImage_style"
+    <Button
+        android:id="@+id/bt_AddImage_Second"
+        style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="@string/description_fab_AddImage"
-        android:src="@drawable/ic_baseline_add_photo_alternate_24"
-        android:visibility="visible"
+        android:layout_marginTop="16dp"
+        android:text="@string/bt_AddImage_AddFlora"
         app:layout_constraintBottom_toTopOf="@+id/scrollView_Second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +95,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_H_Buttons_Second"
         app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_Second"
         app:layout_constraintStart_toEndOf="@+id/guideline_VStart_Second"
-        app:layout_constraintTop_toBottomOf="@+id/fab_AddImage_Second">
+        app:layout_constraintTop_toBottomOf="@+id/bt_AddImage_Second">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -508,6 +506,7 @@
 
     <Button
         android:id="@+id/bt_Cancel_Second"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -536,6 +535,7 @@
 
     <Button
         android:id="@+id/bt_Edit_Second"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -127,11 +129,16 @@ public class AddImagenFragment extends Fragment {
         return intent;
     }
 
+    private void hideMenu(){
+        setHasOptionsMenu(true);
+    }
+
     private void initialize(){
         bundle = getArguments();
         fragmentOrigin = bundle.getByte("fragmentOrigin");
         imageSelected = false;
         launcher = getLauncher();
+        hideMenu();
         initializeButtons();
         initializeEditTexts();
         initializeImage();
@@ -180,6 +187,17 @@ public class AddImagenFragment extends Fragment {
     private void selectImage(){
         Intent intent = getContentIntent();
         launcher.launch(intent);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_edit, menu);
+        if(menu.findItem(R.id.delete_opt) != null){
+//            menu.findItem(R.id.delete_opt).setEnabled(false);
+            menu.findItem(R.id.delete_opt).setVisible(false);
+        }
     }
 
     @Override

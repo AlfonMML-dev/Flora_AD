@@ -12,6 +12,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -179,7 +181,12 @@ public class AddFloraFragment extends Fragment {
         return editTextsValues;
     }
 
+    private void hideMenu(){
+        setHasOptionsMenu(true);
+    }
+
     private void initialize(){
+        hideMenu();
         afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
         aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
         initializeButtons();
@@ -284,6 +291,17 @@ public class AddFloraFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_edit, menu);
+        if(menu.findItem(R.id.delete_opt) != null){
+//            menu.findItem(R.id.delete_opt).setEnabled(false);
+            menu.findItem(R.id.delete_opt).setVisible(false);
+        }
     }
 
     @Override

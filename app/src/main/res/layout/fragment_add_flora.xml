@@ -62,6 +62,7 @@
 
     <Button
         android:id="@+id/bt_AddImage_AddFlora"
+        style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -493,6 +494,7 @@
 
     <Button
         android:id="@+id/bt_Cancel_AddFlora"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -506,6 +508,7 @@
 
     <Button
         android:id="@+id/bt_Add_AddFlora"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -59,6 +59,8 @@ public class SecondFragment extends Fragment {
 
     private ArrayList<TextInputEditText> editTextArrayList;
 
+    private long idFlora;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -111,10 +113,20 @@ public class SecondFragment extends Fragment {
     private void dataBundleFromAddImageFragment(){
         ArrayList<String> editTextsValues = bundle.getStringArrayList("editTextsValues");
         fillEditTexts(editTextsValues);
+        if(flora == null){
+            idFlora = bundle.getLong("idFlora");
+//            mavm.getFlora();
+            Log.v("SFF dataBundle", idFlora + "");
+//            flora = mavm.getFloraLiveData().getValue().get((int) idFlora);
+            flora = new Flora();
+            flora.setId(idFlora);
+            flora.setAtributtes(editTextsValues);
+        }
         if(bundle.getBoolean("completeBundle")){
             dataImage = bundle.getParcelable("dataImage");
             Log.v("AFF dataBundle", dataImage.uri.toString());
         }
+        fillSlider();
     }
 
     private void dataBundleFromFirstFragment(){
@@ -197,8 +209,9 @@ public class SecondFragment extends Fragment {
         sliderImageAdapter = new SliderImageAdapter(sliderDataArrayList, getContext());
         sliderView.setSliderAdapter(sliderImageAdapter);
 
-        //String url_img = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
-        String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
+//        String url_img = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFApp/public/api/imagen/";
+        //String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
+        String url_img = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
         aivm.getImages(flora.getId());
         images.observe(this, image->{
             for (int i = 0; i < image.length; i++) {
@@ -248,9 +261,6 @@ public class SecondFragment extends Fragment {
             dataBundleFromAddImageFragment();
         }
         enableEditTextArrayList(false);
-        //Cargar el Slider
-        fillSlider();
-
 
         dataObserver();
         textListener();
@@ -317,11 +327,12 @@ public class SecondFragment extends Fragment {
     }
 
     private void initializeFAB(){
-        binding.fabAddImageSecond.setOnClickListener(new View.OnClickListener() {
+        binding.btAddImageSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bundle = null;
                 bundle = new Bundle();
+                bundle.putLong("idFlora", flora.getId());
                 bundle.putByte("fragmentOrigin", (byte) 0);
                 bundle.putStringArrayList("editTextsValues", getEditTextsValues());
                 navigateToAddImagenFragment();

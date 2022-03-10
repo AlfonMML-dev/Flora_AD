@@ -35,6 +35,10 @@ public class MainActivityViewModel extends AndroidViewModel {
         return repository.getFloraLiveData();
     }
 
+    public MutableLiveData<Flora> getFloraLiveDataId() {
+        return repository.getFloraLiveDataId();
+    }
+
     public void createFlora(Flora flora) {
         repository.createFlora(flora);
     }

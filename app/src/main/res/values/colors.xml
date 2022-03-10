@@ -8,8 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primaryColorGreen">#689f38</color>
+    <color name="primaryColorGreen">#3C8000</color>
     <color name="primaryLightColorGreen">#99d066</color>
-    <color name="primaryDarkColorGreen">#387002</color>
+    <color name="primaryDarkColorGreen">#285100</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="button_TextColor">#FFFFFF</color>
+    <color name="primaryColorGreenModify">#509811</color>
+    <color name="primaryLightColorGreenModify">#99d066</color>
+    <color name="primaryDarkColorGreenModify">#356A01</color>
 </resources>

@@ -70,6 +70,7 @@
     <string name="tv_ClickInCloud_AddImagen">Haz Clic en la Nube</string>
     <string name="bt_Cancel_AddImagen">Cancelar</string>
     <string name="bt_Add_AddImagen">Agregar</string>
+    <string name="helperText_Opcional">Opcional</string>
     <string name="hint_Nombre_AddImagen">Nombre</string>
     <string name="hint_Descripcion_AddImagen">Descripción</string>
     <string name="hint_URL_AddImagen">URL de la foto</string>
