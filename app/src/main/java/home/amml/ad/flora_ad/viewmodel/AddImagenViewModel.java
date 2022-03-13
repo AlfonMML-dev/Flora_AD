@@ -21,6 +21,10 @@ public class AddImagenViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
+    public boolean copyDataWithoutIntent(Uri uri){
+        return repository.copyDataWithoutIntent(uri);
+    }
+
     public MutableLiveData<Long> getAddImagenLiveData() {
         return repository.getAddImagenLiveData();
     }
@@ -29,8 +33,8 @@ public class AddImagenViewModel extends AndroidViewModel {
         repository.saveImagen(intent, imagen);
     }
 
-    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
-        repository.saveImagenWithoutIntent(uri, imagen);
+    public void saveImagenWithoutIntent(Imagen imagen) {
+        repository.saveImagenWithoutIntent(imagen);
     }
 
     public void getImages(long id){

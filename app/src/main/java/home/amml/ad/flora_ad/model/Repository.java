@@ -49,6 +49,8 @@ public class Repository {
     private String url = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/";
 //    private String url = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/";
 
+    private String fileImageName = "subirFoto.abc";
+
     public Repository(Context context) {
         this.context = context;
         floraClient = getFloraClient();
@@ -103,14 +105,14 @@ public class Repository {
         return result;
     }
 
-    private boolean copyDataWithoutIntent(Uri uri, String name) {
+    public boolean copyDataWithoutIntent(Uri uri) {
         Log.v("Repo copyWithout", "copyData");
         boolean result = true;
         InputStream in = null;
         OutputStream out = null;
         try {
             in = context.getContentResolver().openInputStream(uri);
-            out = new FileOutputStream(new File(context.getExternalFilesDir(null), name));
+            out = new FileOutputStream(new File(context.getExternalFilesDir(null), fileImageName));
             byte[] buffer = new byte[1024];
             int len;
             int cont = 0;
@@ -238,18 +240,15 @@ public class Repository {
     }
 
     public void saveImagen(Intent intent, Imagen imagen) {
-        String nombre = "xyzyx.abc";
-        copyData(intent, nombre);
-        File file = new File(context.getExternalFilesDir(null), nombre);
-        Log.v("xyzyx", file.getAbsolutePath());
+        copyData(intent, fileImageName);
+        File file = new File(context.getExternalFilesDir(null), fileImageName);
+        Log.v("Repo fileImageName", file.getAbsolutePath());
         subirImagen(file, imagen);
     }
 
-    public void saveImagenWithoutIntent(Uri uri, Imagen imagen) {
-        String nombre = "xyzyx.abc";
-        copyDataWithoutIntent(uri, nombre);
-        File file = new File(context.getExternalFilesDir(null), nombre);
-        Log.v("Repo saveWithout", file.getAbsolutePath());
+    public void saveImagenWithoutIntent(Imagen imagen) {
+        File file = new File(context.getExternalFilesDir(null), fileImageName);
+        Log.v("Repo fileImageName", file.getAbsolutePath());
         subirImagen(file, imagen);
     }
 
@@ -261,12 +260,12 @@ public class Repository {
             @Override
             public void onResponse(Call<Long> call, Response<Long> response) {
                 addImagenLiveData.setValue(response.body());
-                Log.v("xyzyx", "ok");
+                Log.v("Repo subirImagen", "ok");
             }
 
             @Override
             public void onFailure(Call<Long> call, Throwable t) {
-                Log.v("xyzyx", "error");
+                Log.v("Repo subirImagen", "error");
             }
         });
     }

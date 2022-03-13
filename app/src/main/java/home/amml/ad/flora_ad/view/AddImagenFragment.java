@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -25,11 +26,13 @@ import java.util.Date;
 import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentAddImagenBinding;
 import home.amml.ad.flora_ad.model.entity.DataImage;
+import home.amml.ad.flora_ad.viewmodel.AddImagenViewModel;
 
 public class AddImagenFragment extends Fragment {
 
     private FragmentAddImagenBinding binding;
 
+    private AddImagenViewModel aivm;
     private ActivityResultLauncher<Intent> launcher;
     private Bundle bundle;
     private Intent resultadoImagen = null;
@@ -62,25 +65,11 @@ public class AddImagenFragment extends Fragment {
     private void addNewImage(){
         if(imageSelected && imageUri != null){
             //Nombre de la imagen
-            String nombre = "";
-            if(checkEditTextContent(et_Nombre_AddImagen)){
-                if(et_Nombre_AddImagen.getText().toString().length() >= 50){
-                    nombre = et_Nombre_AddImagen.getText().toString().trim().substring(0, 40);
-                } else{
-                    nombre = et_Nombre_AddImagen.getText().toString().trim();
-                }
-                nombre = nombre.toLowerCase();
-                nombre += "_" + new Date().getTime();
-            } else{
-                nombre = String.valueOf(new Date().getTime());
-            }
+            String nombre = getNombre();
             //Descripcion de la imagen
-            String descripcion;
-            if(checkEditTextContent(et_Descripcion_AddImagen)){
-                descripcion = et_Nombre_AddImagen.getText().toString();
-            } else{
-                descripcion = "flora bonita";
-            }
+            String descripcion = getDescripcion();
+            //Guardamos la imagen en un fichero. El nombre está establecido en la clase Repository
+            aivm.copyDataWithoutIntent(imageUri);
             //Creamos un objeto DataImage
             DataImage dataImage = new DataImage(imageUri, nombre, descripcion);
             //Indicamos que el bundle está completo
@@ -124,11 +113,38 @@ public class AddImagenFragment extends Fragment {
         return intent;
     }
 
+    private String getNombre(){
+        String nombre = "";
+        if(checkEditTextContent(et_Nombre_AddImagen)){
+            if(et_Nombre_AddImagen.getText().toString().length() >= 50){
+                nombre = et_Nombre_AddImagen.getText().toString().trim().substring(0, 40);
+            } else{
+                nombre = et_Nombre_AddImagen.getText().toString().trim();
+            }
+            nombre = nombre.toLowerCase();
+            nombre += "_" + new Date().getTime();
+        } else{
+            nombre = String.valueOf(new Date().getTime());
+        }
+        return nombre;
+    }
+
+    private String getDescripcion(){
+        String descripcion = "";
+        if(checkEditTextContent(et_Descripcion_AddImagen)){
+            descripcion = et_Nombre_AddImagen.getText().toString();
+        } else{
+            descripcion = "flora bonita";
+        }
+        return descripcion;
+    }
+
     private void hideMenu(){
         setHasOptionsMenu(true);
     }
 
     private void initialize(){
+        aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
         bundle = getArguments();
         fragmentOrigin = bundle.getByte("fragmentOrigin");
         imageSelected = false;

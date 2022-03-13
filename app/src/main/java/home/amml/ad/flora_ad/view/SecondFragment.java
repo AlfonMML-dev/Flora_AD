@@ -84,7 +84,7 @@ public class SecondFragment extends Fragment {
         imagen.descripcion = dataImage.descripcion;
         imagen.idflora = id;
         Log.v("ASF addNewImage", "flora id " + id);
-        aivm.saveImagenWithoutIntent(dataImage.uri, imagen);
+        aivm.saveImagenWithoutIntent(imagen);
     }
 
     void alertDialog(){

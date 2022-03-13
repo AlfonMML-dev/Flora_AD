@@ -80,7 +80,7 @@ public class AddFloraFragment extends Fragment {
         imagen.descripcion = dataImage.descripcion;
         imagen.idflora = id;
         Log.v("AFF addNewImage", "flora id " + id);
-        aivm.saveImagenWithoutIntent(dataImage.uri, imagen);
+        aivm.saveImagenWithoutIntent(imagen);
     }
 
     private void dataBundle(){
