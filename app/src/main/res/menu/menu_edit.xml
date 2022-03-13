@@ -8,4 +8,16 @@
         android:icon="@drawable/ic_baseline_delete_forever_24"
         android:title="@string/item_Delete_MenuEdit"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/edit_opt"
+        android:icon="@drawable/ic_baseline_mode_edit_24"
+        android:title="@string/item_Delete_MenuEdit"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/edit_off_opt"
+        android:icon="@drawable/ic_baseline_edit_off_24"
+        android:title="Item"
+        app:showAsAction="always" />
 </menu>

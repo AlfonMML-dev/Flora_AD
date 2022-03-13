@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -91,12 +92,6 @@ public class AddImagenFragment extends Fragment {
             bundle.putBoolean("completeBundle", false);
             bundle.putByte("decideBundle", (byte) 1);
         }
-        if(fragmentOrigin == 0){
-             navigateToSecondFragment(bundle);
-        } else{
-            navigateToAddFloraFragment(bundle);
-        }
-
     }
 
     private boolean checkEditTextContent(TextInputEditText et){
@@ -156,6 +151,12 @@ public class AddImagenFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 addNewImage();
+                Log.v("AIF", fragmentOrigin + "");
+                if(fragmentOrigin == 0){
+                    navigateToSecondFragment(bundle);
+                } else{
+                    navigateToAddFloraFragment(bundle);
+                }
             }
         });
     }
@@ -195,8 +196,13 @@ public class AddImagenFragment extends Fragment {
         menu.clear();
         inflater.inflate(R.menu.menu_edit, menu);
         if(menu.findItem(R.id.delete_opt) != null){
-//            menu.findItem(R.id.delete_opt).setEnabled(false);
             menu.findItem(R.id.delete_opt).setVisible(false);
+        }
+        if(menu.findItem(R.id.edit_opt) != null){
+            menu.findItem(R.id.edit_opt).setVisible(false);
+        }
+        if(menu.findItem(R.id.edit_off_opt) != null){
+            menu.findItem(R.id.edit_off_opt).setVisible(false);
         }
     }
 

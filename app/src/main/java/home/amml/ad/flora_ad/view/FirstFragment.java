@@ -90,8 +90,13 @@ public class FirstFragment extends Fragment {
         menu.clear();
         inflater.inflate(R.menu.menu_edit, menu);
         if(menu.findItem(R.id.delete_opt) != null){
-//            menu.findItem(R.id.delete_opt).setEnabled(false);
             menu.findItem(R.id.delete_opt).setVisible(false);
+        }
+        if(menu.findItem(R.id.edit_opt) != null){
+            menu.findItem(R.id.edit_opt).setVisible(false);
+        }
+        if(menu.findItem(R.id.edit_off_opt) != null){
+            menu.findItem(R.id.edit_off_opt).setVisible(false);
         }
     }
 

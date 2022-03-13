@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,10 @@ public class SecondFragment extends Fragment {
     private Bundle bundle;
     private DataImage dataImage = null;
     private Flora flora;
+    private long idFlora;
 
-
+    //Componentes de la interfaz
+    private Menu menuFragment;
     private SliderView sliderView;
     private SliderImageAdapter sliderImageAdapter;
 
@@ -58,8 +61,6 @@ public class SecondFragment extends Fragment {
             et_MedidasPropuestas_Second;
 
     private ArrayList<TextInputEditText> editTextArrayList;
-
-    private long idFlora;
 
     @Override
     public View onCreateView(
@@ -104,6 +105,10 @@ public class SecondFragment extends Fragment {
         dialog.show();
     }
 
+    private void activateMenu(){
+        setHasOptionsMenu(true);
+    }
+
     private void dataBundleFromAddImageFragment(){
         ArrayList<String> editTextsValues = bundle.getStringArrayList("editTextsValues");
         fillEditTexts(editTextsValues);
@@ -136,7 +141,6 @@ public class SecondFragment extends Fragment {
                 }
                 Toast.makeText(getContext(), "Flora actualizada", Toast.LENGTH_SHORT).show();
                 mavm.getEditLiveData().removeObserver(this);
-                navigateToFirstFragment();
             }
         });
     }
@@ -202,8 +206,8 @@ public class SecondFragment extends Fragment {
         sliderView.setSliderAdapter(sliderImageAdapter);
 
 //        String url_img = "https://informatica.ieszaidinvergeles.org:10011/AD/felixRDLFApp/public/api/imagen/";
-        //String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
         String url_img = "https://informatica.ieszaidinvergeles.org:10016/AD/felixRDLFapp/public/api/imagen/";
+        //String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
         aivm.getImages(flora.getId());
         images.observe(this, image->{
             for (int i = 0; i < image.length; i++) {
@@ -242,6 +246,7 @@ public class SecondFragment extends Fragment {
     private void initialize(){
         aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
         mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        activateMenu();
         initializeButtons();
         initializeEditTexts();
         initializeFAB();
@@ -263,15 +268,10 @@ public class SecondFragment extends Fragment {
         binding.btCancelSecond.setOnClickListener(view -> NavHostFragment.findNavController(SecondFragment.this)
                 .navigate(R.id.action_SecondFragment_to_FirstFragment));
 
-        binding.btEditSecond.setOnClickListener(view -> {
-            binding.btEditSecond.setVisibility(View.GONE);
-            binding.btEditSecond.setEnabled(false);
-            enableEditTextArrayList(true);
-            binding.btSaveSecond.setVisibility(View.VISIBLE);
-            binding.btSaveSecond.setEnabled(true);
+        binding.btSaveSecond.setOnClickListener(view -> {
+            saveAction();
+            navigateToFirstFragment();
         });
-
-        binding.btSaveSecond.setOnClickListener(view -> saveAction());
     }
 
     private void initializeEditTexts() {
@@ -365,6 +365,17 @@ public class SecondFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menuFragment = menu;
+        menuFragment.clear();
+        inflater.inflate(R.menu.menu_edit, menuFragment);
+        if(menuFragment.findItem(R.id.edit_off_opt) != null){
+            menuFragment.findItem(R.id.edit_off_opt).setVisible(false);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -375,6 +386,20 @@ public class SecondFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.delete_opt: {
                 alertDialog();
+                return true;
+            }
+            case R.id.edit_opt:{
+                enableEditTextArrayList(true);
+                binding.btSaveSecond.setEnabled(true);
+                binding.btSaveSecond.setVisibility(View.VISIBLE);
+                item.setVisible(false);
+                menuFragment.findItem(R.id.edit_off_opt).setVisible(true);
+                return true;
+            }
+            case R.id.edit_off_opt:{
+                enableEditTextArrayList(false);
+                item.setVisible(false);
+                menuFragment.findItem(R.id.edit_opt).setVisible(true);
                 return true;
             }
         }
