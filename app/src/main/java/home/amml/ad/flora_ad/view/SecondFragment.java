@@ -205,7 +205,6 @@ public class SecondFragment extends Fragment {
     }
 
     private void fillSlider(){
-//        MutableLiveData<Imagen[]> images = aivm.getImagesLiveData();
         MutableLiveData<ImageRowResponse> images = aivm.getImagesLiveData();
         ArrayList<String> sliderDataArrayList = new ArrayList<>();
         sliderView = binding.imageSlider;

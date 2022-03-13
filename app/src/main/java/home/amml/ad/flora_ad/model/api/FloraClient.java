@@ -41,9 +41,6 @@ public interface FloraClient {
     @POST("api/imagen/subir")
     Call<Long> subirImagen(@Part MultipartBody.Part file, @Part("idflora") long idFlora, @Part("descripcion") String descripcion);
 
-//    @GET("api/flora/{idflora}/imagen")
-//    Call<Imagen[]> getImages(@Path("idflora") long idflora);
-
     @GET("api/flora/{idflora}/imagen")
     Call<ImageRowResponse> getImages(@Path("idflora") long idflora);
 }
