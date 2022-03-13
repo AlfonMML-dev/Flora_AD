@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import home.amml.ad.flora_ad.model.Repository;
+import home.amml.ad.flora_ad.model.entity.ImageRowResponse;
 import home.amml.ad.flora_ad.model.entity.Imagen;
 
 public class AddImagenViewModel extends AndroidViewModel {
@@ -41,7 +42,10 @@ public class AddImagenViewModel extends AndroidViewModel {
         repository.getImages(id);
     }
 
-    public MutableLiveData<Imagen[]> getImagesLiveData(){
+//    public MutableLiveData<Imagen[]> getImagesLiveData(){
+//        return repository.getImagesLiveData();
+//    }
+    public MutableLiveData<ImageRowResponse> getImagesLiveData(){
         return repository.getImagesLiveData();
     }
 }

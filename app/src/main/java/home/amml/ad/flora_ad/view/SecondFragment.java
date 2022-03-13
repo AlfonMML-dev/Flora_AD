@@ -30,6 +30,7 @@ import home.amml.ad.flora_ad.R;
 import home.amml.ad.flora_ad.databinding.FragmentSecondBinding;
 import home.amml.ad.flora_ad.model.entity.DataImage;
 import home.amml.ad.flora_ad.model.entity.Flora;
+import home.amml.ad.flora_ad.model.entity.ImageRowResponse;
 import home.amml.ad.flora_ad.model.entity.Imagen;
 import home.amml.ad.flora_ad.model.entity.RowsResponse;
 import home.amml.ad.flora_ad.view.adapter.SliderImageAdapter;
@@ -122,8 +123,13 @@ public class SecondFragment extends Fragment {
         if(bundle.getBoolean("completeBundle")){
             dataImage = bundle.getParcelable("dataImage");
             Log.v("AFF dataBundle", dataImage.uri.toString());
+            //Quitar el slider y mostrar el imageView
+            //Para ello primero hay que rellenar el slider para que no sea nulo
+            fillSlider();
+            sliderView.setVisibility(View.GONE);
+            binding.ivUploadSecond.setImageURI(dataImage.uri);
+            binding.ivUploadSecond.setVisibility(View.VISIBLE);
         }
-        fillSlider();
     }
 
     private void dataBundleFromFirstFragment(){
@@ -199,7 +205,8 @@ public class SecondFragment extends Fragment {
     }
 
     private void fillSlider(){
-        MutableLiveData<Imagen[]> images = aivm.getImagesLiveData();
+//        MutableLiveData<Imagen[]> images = aivm.getImagesLiveData();
+        MutableLiveData<ImageRowResponse> images = aivm.getImagesLiveData();
         ArrayList<String> sliderDataArrayList = new ArrayList<>();
         sliderView = binding.imageSlider;
         sliderImageAdapter = new SliderImageAdapter(sliderDataArrayList, getContext());
@@ -210,8 +217,8 @@ public class SecondFragment extends Fragment {
         //String url_img = "https://informatica.ieszaidinvergeles.org:10099/ad/felixRDLFApp/public/api/imagen/";
         aivm.getImages(flora.getId());
         images.observe(this, image->{
-            for (int i = 0; i < image.length; i++) {
-                sliderDataArrayList.add(url_img + "/" + image[i].id);
+            for (int i = 0; i < image.rows.length; i++) {
+                sliderDataArrayList.add(url_img + image.rows[i].id);
             }
             sliderImageAdapter.setSliderList(sliderDataArrayList);
         });

@@ -11,6 +11,7 @@ import home.amml.ad.flora_ad.model.api.FloraClient;
 import home.amml.ad.flora_ad.model.entity.CreateResponse;
 import home.amml.ad.flora_ad.model.entity.DeleteResponse;
 import home.amml.ad.flora_ad.model.entity.Flora;
+import home.amml.ad.flora_ad.model.entity.ImageRowResponse;
 import home.amml.ad.flora_ad.model.entity.Imagen;
 
 import java.io.File;
@@ -40,7 +41,8 @@ public class Repository {
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
 
-    private MutableLiveData<Imagen[]> imagesLiveData = new MutableLiveData<>();
+//    private MutableLiveData<Imagen[]> imagesLiveData = new MutableLiveData<>();
+    private MutableLiveData<ImageRowResponse> imagesLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> deleteFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<DeleteResponse> deleteLiveData = new MutableLiveData<>();
     private MutableLiveData<RowsResponse> editLiveData = new MutableLiveData<>();
@@ -218,22 +220,40 @@ public class Repository {
         return this.deleteLiveData;
     }
 
-    public MutableLiveData<Imagen[]> getImagesLiveData(){
+//    public MutableLiveData<Imagen[]> getImagesLiveData(){
+//        return this.imagesLiveData;
+//    }
+    public MutableLiveData<ImageRowResponse> getImagesLiveData(){
         return this.imagesLiveData;
     }
 
 
 
+//    public void getImages(long id){
+//        Call<Imagen[]> images = floraClient.getImages(id);
+//        images.enqueue(new Callback<Imagen[]>() {
+//            @Override
+//            public void onResponse(Call<Imagen[]> call, Response<Imagen[]> response) {
+//                imagesLiveData.setValue(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Imagen[]> call, Throwable t) {
+//
+//            }
+//        });
+//    }
+
     public void getImages(long id){
-        Call<Imagen[]> images = floraClient.getImages(id);
-        images.enqueue(new Callback<Imagen[]>() {
+        Call<ImageRowResponse> images = floraClient.getImages(id);
+        images.enqueue(new Callback<ImageRowResponse>() {
             @Override
-            public void onResponse(Call<Imagen[]> call, Response<Imagen[]> response) {
+            public void onResponse(Call<ImageRowResponse> call, Response<ImageRowResponse> response) {
                 imagesLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<Imagen[]> call, Throwable t) {
+            public void onFailure(Call<ImageRowResponse> call, Throwable t) {
 
             }
         });

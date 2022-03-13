@@ -3,6 +3,7 @@ package home.amml.ad.flora_ad.model.api;
 import home.amml.ad.flora_ad.model.entity.CreateResponse;
 import home.amml.ad.flora_ad.model.entity.DeleteResponse;
 import home.amml.ad.flora_ad.model.entity.Flora;
+import home.amml.ad.flora_ad.model.entity.ImageRowResponse;
 import home.amml.ad.flora_ad.model.entity.Imagen;
 import home.amml.ad.flora_ad.model.entity.RowsResponse;
 
@@ -40,6 +41,9 @@ public interface FloraClient {
     @POST("api/imagen/subir")
     Call<Long> subirImagen(@Part MultipartBody.Part file, @Part("idflora") long idFlora, @Part("descripcion") String descripcion);
 
+//    @GET("api/flora/{idflora}/imagen")
+//    Call<Imagen[]> getImages(@Path("idflora") long idflora);
+
     @GET("api/flora/{idflora}/imagen")
-    Call<Imagen[]> getImages(@Path("idflora") long idflora);
+    Call<ImageRowResponse> getImages(@Path("idflora") long idflora);
 }
