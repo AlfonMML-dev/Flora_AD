@@ -45,6 +45,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_AddFlora"
+        style="@style/fab_AddImage_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +55,8 @@
         android:src="@drawable/ic_baseline_post_add_24"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_HBottom_First"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_VEnd_First"
+        android:focusable="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

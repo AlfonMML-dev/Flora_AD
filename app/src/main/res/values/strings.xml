@@ -37,6 +37,8 @@
     <string name="bt_Edit_Second">Editar</string>
     <!-- menu_edit -->
     <string name="item_Delete_MenuEdit">Borrar</string>
+    <string name="item_Edit_MenuEdit">Editar</string>
+    <string name="item_EditOff_MenuEdit">No editar</string>
 
     <!-- fragment_add_flora -->
     <string name="tv_AddNewFlora_AddFlora">Agregar nueva flora</string>

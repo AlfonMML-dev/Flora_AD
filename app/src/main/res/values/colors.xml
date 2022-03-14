@@ -16,4 +16,16 @@
     <color name="primaryColorGreenModify">#509811</color>
     <color name="primaryLightColorGreenModify">#99d066</color>
     <color name="primaryDarkColorGreenModify">#356A01</color>
+
+    <color name="primaryColorGreen_Night">#39533A</color>
+    <color name="primaryLightColorGreen_Night">#4D7350</color>
+    <color name="primaryDarkColorGreen_Night">#292E27</color>
+    <color name="secondaryColor_Night">#6f8f72</color>
+    <color name="secondaryDarkColor_Night">#504b43</color>
+
+    <color name="hintTextColor_Day">#30302F</color>
+    <color name="hintTextColor_Night">#BCBCBA</color>
+
+    <color name="fabBackgroundTint_Day">#2686cf</color>
+    <color name="fabBackgroundTint_Night">#ca8cd0</color>
 </resources>

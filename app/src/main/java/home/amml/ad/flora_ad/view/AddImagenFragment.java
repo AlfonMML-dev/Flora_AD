@@ -159,7 +159,7 @@ public class AddImagenFragment extends Fragment {
         binding.btCancelAddImagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getChildFragmentManager().popBackStack();
+                NavHostFragment.findNavController(AddImagenFragment.this).popBackStack();
             }
         });
 
